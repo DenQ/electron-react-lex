@@ -58,6 +58,15 @@ exports[`Counter component should match exact snapshot 1`] = `
         async
       </button>
     </div>
+    <button
+      className="btn"
+      data-tclass="btn"
+      onClick={undefined}
+    >
+      <i
+        className="fa fa-grav"
+      />
+    </button>
   </div>
 </div>
 `;

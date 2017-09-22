@@ -53,5 +53,13 @@ describe('containers', () => {
       buttons.at(2).simulate('click');
       expect(p.text()).toMatch(/^2$/);
     });
+
+    it('should set counter to 100', () => {
+      const { buttons, p } = setup({ counter: 1 });
+      // console.log(buttons.at(4).find('.fa-grav').length);//1
+      buttons.at(4).simulate('click');
+      expect(p.text()).toMatch(/^100$/);
+    });
+
   });
 });

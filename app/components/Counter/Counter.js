@@ -5,6 +5,7 @@ import styles from './Counter.css';
 
 class Counter extends Component {
   props: {
+    set100: () => void,
     increment: () => void,
     incrementIfOdd: () => void,
     incrementAsync: () => void,
@@ -13,7 +14,7 @@ class Counter extends Component {
   };
 
   render() {
-    const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
+    const { set100, increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
     return (
       <div>
         <div className={styles.backButton} data-tid="backButton">
@@ -34,6 +35,11 @@ class Counter extends Component {
           <button className={styles.btn} onClick={incrementIfOdd} data-tclass="btn">odd</button>
           <button className={styles.btn} onClick={() => incrementAsync()} data-tclass="btn">async</button>
         </div>
+
+        <button className={styles.btn} onClick={set100} data-tclass="btn">
+          <i className="fa fa-grav" />
+        </button>
+
       </div>
     );
   }

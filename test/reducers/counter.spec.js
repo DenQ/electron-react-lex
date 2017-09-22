@@ -1,5 +1,5 @@
 import counter from '../../app/reducers/counter';
-import { INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../app/actions/counter';
+import { SET_100_COUNTER, INCREMENT_COUNTER, DECREMENT_COUNTER } from '../../app/actions/counter';
 
 describe('reducers', () => {
   describe('counter', () => {
@@ -13,6 +13,10 @@ describe('reducers', () => {
 
     it('should handle DECREMENT_COUNTER', () => {
       expect(counter(1, { type: DECREMENT_COUNTER })).toMatchSnapshot();
+    });
+
+    it('should handle SET_100_COUNTER', () => {
+      expect(counter(100, { type: SET_100_COUNTER })).toMatchSnapshot();
     });
 
     it('should handle unknown action type', () => {
