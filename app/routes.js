@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router';
 import App from './containers/App';
 import HomePage from './containers/Home/HomePage';
-import CounterPage from './containers/CounterPage';
+import CounterPage from './containers/Counter/CounterPage';
 
 export default () => (
   <App>
