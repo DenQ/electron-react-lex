@@ -129,7 +129,27 @@ export default class MenuBuilder {
           this.mainWindow.close();
         }
       }]
-    }, {
+    },
+    {
+      label: 'Pages',
+      submenu: [
+        {
+          label: 'List albums',
+          click: () => { },
+        },
+        {
+          label: 'New album',
+          click: () => { }
+        },
+        {
+          label: 'Go to counter',
+          click: () => {
+            this.mainWindow.webContents.send('go-to-counter');
+          }
+        },
+      ],
+    },
+    {
       label: '&View',
       submenu: (process.env.NODE_ENV === 'development') ? [{
         label: '&Reload',

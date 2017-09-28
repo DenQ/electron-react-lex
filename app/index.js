@@ -9,10 +9,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import AppBar from 'material-ui/AppBar';
 import IndigoThema from './themes/dark-indigo';
-
+import { ipcRenderer } from 'electron';
 import './app.global.scss';
+import { push } from 'react-router-redux'
 
 const store = configureStore();
+
+ipcRenderer.on('go-to-counter', (event, filename) => {
+  store.dispatch(push('/counter'));
+});
 
 render(
   <AppContainer>
