@@ -1,0 +1,19 @@
+@import "~font-awesome/css/font-awesome.css";
+
+$primary-color-dark:   #303F9F;
+$primary-color:        #3F51B5;
+$primary-color-light:  #C5CAE9;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FF4081;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+body {
+  position: relative;
+  color: white;
+  height: 100vh;
+  background-color: $primary-color-dark;
+  overflow-y: hidden;
+  font-family: Roboto;
+}
