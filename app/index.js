@@ -3,14 +3,20 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
+
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import './app.global.css';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import AppBar from 'material-ui/AppBar';
+import IndigoThema from './themes/dark-indigo';
+
+import './app.global.scss';
 
 const store = configureStore();
 
 render(
   <AppContainer>
-    <MuiThemeProvider>
+    <MuiThemeProvider muiTheme={getMuiTheme(IndigoThema)}>
       <Root store={store} history={history} />
     </MuiThemeProvider>
   </AppContainer>,
@@ -22,7 +28,7 @@ if (module.hot) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
     render(
       <AppContainer>
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={getMuiTheme(IndigoThema)}>
           <NextRoot store={store} history={history} />
         </MuiThemeProvider>
       </AppContainer>,
