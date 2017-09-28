@@ -1,11 +1,12 @@
 // @flow
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-// import { Link } from 'react-router-dom';
-// import styles from './style.css';
+import FlatButton from 'material-ui/FlatButton';
+import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+
 
 export default class Home extends Component {
   render() {
@@ -15,9 +16,11 @@ export default class Home extends Component {
           title="Title"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
-        <FloatingActionButton secondary={true}>
-          <ContentAdd />
-       </FloatingActionButton>
+
+        <Link to="/counter">
+          <RaisedButton label="Go to counter" secondary={true} />
+        </Link>
+
       </div>
     );
   }
