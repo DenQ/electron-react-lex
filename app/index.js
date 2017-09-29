@@ -22,10 +22,11 @@ ipcRenderer.on('go-to-counter', (event, filename) => {
 
 let thema = IndigoThema;
 
-function renderApp(rootComponent = false) {
+function renderApp(flag) {
   let root;
-  if (rootComponent) {
-    root = (<rootComponent store={store} history={history} />);
+  if (flag) {
+    const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
+    root = <NextRoot store={store} history={history} />;
   } else {
     root = (<Root store={store} history={history} />);
   }
@@ -47,8 +48,9 @@ function renderApp(rootComponent = false) {
 renderApp();
 
 if (module.hot) {
+  console.log(222);
   module.hot.accept('./containers/Root', () => {
-    const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
-    renderApp(NextRoot);
+    // const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
+    renderApp(true);
   });
 }

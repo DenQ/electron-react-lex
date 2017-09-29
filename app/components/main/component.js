@@ -18,7 +18,7 @@ export default class Home extends Component {
         />
 
         <Link to="/counter">
-          <RaisedButton label="Go to counter" secondary={true} />
+          <RaisedButton label="Go to counter 234" secondary={true} />
         </Link>
 
       </div>
