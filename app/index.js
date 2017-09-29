@@ -16,7 +16,7 @@ import { push } from 'react-router-redux'
 
 const store = configureStore();
 
-ipcRenderer.on('go-to-counter', (event, filename) => {
+ipcRenderer.on('go-to-counter', (event) => {
   store.dispatch(push('/counter'));
 });
 
@@ -48,7 +48,6 @@ function renderApp(flag) {
 renderApp();
 
 if (module.hot) {
-  console.log(222);
   module.hot.accept('./containers/Root', () => {
     // const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
     renderApp(true);
