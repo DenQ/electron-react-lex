@@ -1,10 +1,7 @@
-// type actionType = {
-//   +type: string
-// };
+import { push } from 'react-router-redux'
 
 export function transitionTo(path) {
   return (dispatch) => {
-    console.log(222);
-    // dispatch(increment());
+    dispatch(push(path));
   };
 }
