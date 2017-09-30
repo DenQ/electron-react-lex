@@ -2,7 +2,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import App from './containers/App';
-// import MainPage from './containers/main/container';
 import ListAlbumsPage from './containers/pages/list-albums/container';
 import CounterPage from './containers/Counter/CounterPage';
 
