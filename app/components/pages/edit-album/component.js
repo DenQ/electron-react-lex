@@ -1,17 +1,46 @@
 // @flow
 import React, { Component } from 'react';
-// import RaisedButton from 'material-ui/RaisedButton';
-// import FlatButton from 'material-ui/FlatButton';
-// import { Link } from 'react-router-dom';
-// import FloatingActionButton from 'material-ui/FloatingActionButton';
-// import ContentAdd from 'material-ui/svg-icons/content/add';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
+import AddCircle from 'material-ui/svg-icons/content/add-circle';
 
+const styles = {
+  largeIcon: {
+    width: 36,
+    height: 36,
+  },
+  large: {
+    padding: 1,
+  },
+};
 
-export default class Home extends Component {
+export default class EditAlbum extends Component {
+  constructor(props) {
+    super(props);
+    this.handleToList = this.handleToList.bind(this);
+  }
+
+  handleToList() {
+    const { transitionTo } = this.props.urlManagerActions;
+    transitionTo('/');
+  }
+
   render() {
     return (
       <div>
-        <h1>Edit album</h1>
+        <AppBar
+          title="Edit album"
+          iconElementLeft={
+            <IconButton
+              style={styles.large}
+              iconStyle={styles.largeIcon}
+              onClick={this.handleToList}
+            >
+              <NavigationClose />
+            </IconButton>
+          }
+        />
       </div>
     );
   }

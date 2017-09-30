@@ -4,7 +4,6 @@ import Component from '../../../components/pages/list-albums/component';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as urlManagerActions from '../../../actions/url-manager';
-import * as CounterActions from '../../../actions/counter';
 
 function mapStateToProps(state) {
   return {
