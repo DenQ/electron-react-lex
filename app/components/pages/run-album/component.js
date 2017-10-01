@@ -1,10 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import { AppBar, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
-import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import Styles from '../../../styles/custom.js'
+import Styles from '../../../styles/custom'
 
 export default class RunAlbum extends Component {
 

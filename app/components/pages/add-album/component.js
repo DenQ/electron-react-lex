@@ -1,12 +1,8 @@
 // @flow
 import React, { Component } from 'react';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
-import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import Save from 'material-ui/svg-icons/content/save';
-import RaisedButton from 'material-ui/RaisedButton';
-import Styles from '../../../styles/custom.js'
+import Styles from '../../../styles/custom'
 
 export default class AddAlbum extends Component {
 
