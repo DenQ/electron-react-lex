@@ -4,16 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
-
-const styles = {
-  largeIcon: {
-    width: 36,
-    height: 36,
-  },
-  large: {
-    padding: 1,
-  },
-};
+import Styles from '../../../styles/custom.js'
 
 export default class EditAlbum extends Component {
   constructor(props) {
@@ -33,8 +24,8 @@ export default class EditAlbum extends Component {
           title="Edit album"
           iconElementLeft={
             <IconButton
-              style={styles.large}
-              iconStyle={styles.largeIcon}
+              style={Styles.iconButton.large}
+              iconStyle={Styles.iconButton.largeIcon}
               onClick={this.handleToList}
             >
               <NavigationClose />

@@ -6,19 +6,10 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import Save from 'material-ui/svg-icons/content/save';
 import RaisedButton from 'material-ui/RaisedButton';
-
-const styles = {
-  largeIcon: {
-    width: 36,
-    height: 36,
-  },
-  large: {
-    padding: 1,
-  },
-};
-
+import Styles from '../../../styles/custom.js'
 
 export default class AddAlbum extends Component {
+
   constructor(props) {
     super(props);
     this.handleToList = this.handleToList.bind(this);
@@ -42,8 +33,8 @@ export default class AddAlbum extends Component {
           title="Add album"
           iconElementLeft={
             <IconButton
-              style={styles.large}
-              iconStyle={styles.largeIcon}
+              style={Styles.iconButton.large}
+              iconStyle={Styles.iconButton.largeIcon}
               onClick={this.handleToList}
             >
               <NavigationClose />
