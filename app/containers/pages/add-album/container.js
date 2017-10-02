@@ -10,6 +10,7 @@ function mapStateToProps(state) {
   return {
     urlManager: state.urlManager,
     albums: state.albums,
+    forms: state.form,
   };
 }
 

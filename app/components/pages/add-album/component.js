@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
+import { formValueSelector } from 'redux-form';
 import Styles from '../../../styles/custom'
 import Form from '../../forms/add-album';
 
@@ -24,14 +25,16 @@ export default class AddAlbum extends Component {
 
   handleToEdit() {
     const { insert } = this.props.albumsActions;
-    insert([{
-      name: 'First Album 101',
-      describe: 'Describe Album 101',
-    }], (dispatch, object) => {
-      console.log(222, object);
-      const { transitionTo } = this.props.urlManagerActions;
-      console.log(333, this, this.props.handleSubmit);
-      // transitionTo('/edit-album/1');
+    // const selector = formValueSelector('addAlbum');
+    // const values = selector(state, 'name', 'description');
+    const state = this.props.forms.addAlbum;
+    const { values } = state;
+
+    insert([values], (dispatch, record) => {
+      if (record) {
+        const { transitionTo } = this.props.urlManagerActions;
+        transitionTo(`/edit-album/${record._id}`);
+      }
     });
   }
 

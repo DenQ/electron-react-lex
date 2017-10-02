@@ -36,5 +36,6 @@ class AddAlbum extends Component {
 // <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
 // </div>
 export default reduxForm({
-  form: 'add-album',
+  form: 'addAlbum',
+
 })(AddAlbum);

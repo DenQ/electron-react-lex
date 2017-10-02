@@ -11,7 +11,8 @@ export function insert(docs, callback) {
         return lastInsertElement(albums);
       })
       .then((result) => {
-        callback(dispatch, result);
+        const record = result.length ? result[0] : null;
+        callback(dispatch, record);
       })
       .catch(error => console.error(error));
   };
