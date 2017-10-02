@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from '../../../styles/custom'
-import Form from '../../forms/example';
+import Form from '../../forms/add-album';
 
 export default class AddAlbum extends Component {
 
@@ -51,13 +51,14 @@ export default class AddAlbum extends Component {
           }
         />
 
+        <Form />
+
         <RaisedButton
           label="Save & to edit"
           secondary={true}
           onClick={this.handleToEdit}
         />
 
-        <Form />
 
       </div>
     );

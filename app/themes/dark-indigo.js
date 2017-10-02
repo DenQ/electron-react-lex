@@ -18,7 +18,7 @@ export default {
     accent1Color: pinkA200,
     accent2Color: grey100,
     accent3Color: grey500,
-    textColor: darkBlack,
+    textColor: white,
     alternateTextColor: white,
     canvasColor: white,
     borderColor: grey300,
