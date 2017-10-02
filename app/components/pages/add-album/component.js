@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from '../../../styles/custom'
+import Form from '../../forms/example';
 
 export default class AddAlbum extends Component {
 
@@ -10,6 +11,10 @@ export default class AddAlbum extends Component {
     super(props);
     this.handleToList = this.handleToList.bind(this);
     this.handleToEdit = this.handleToEdit.bind(this);
+  }
+
+  handleSubmit() {
+    console.log(111);
   }
 
   handleToList() {
@@ -25,7 +30,8 @@ export default class AddAlbum extends Component {
     }], (dispatch, object) => {
       console.log(222, object);
       const { transitionTo } = this.props.urlManagerActions;
-      transitionTo('/edit-album/1');
+      console.log(333, this, this.props.handleSubmit);
+      // transitionTo('/edit-album/1');
     });
   }
 
@@ -50,6 +56,9 @@ export default class AddAlbum extends Component {
           secondary={true}
           onClick={this.handleToEdit}
         />
+
+        <Form />
+
       </div>
     );
   }
