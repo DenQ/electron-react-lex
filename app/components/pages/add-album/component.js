@@ -18,8 +18,15 @@ export default class AddAlbum extends Component {
   }
 
   handleToEdit() {
-    const { transitionTo } = this.props.urlManagerActions;
-    transitionTo('/edit-album/1');
+    const { insert } = this.props.albumsActions;
+    insert([{
+      name: 'First Album 101',
+      describe: 'Describe Album 101',
+    }], (dispatch, object) => {
+      console.log(222, object);
+      const { transitionTo } = this.props.urlManagerActions;
+      transitionTo('/edit-album/1');
+    });
   }
 
   render() {
