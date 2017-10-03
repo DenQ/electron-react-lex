@@ -3,6 +3,15 @@ import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import Styles from '../../../styles/custom'
+import Paper from 'material-ui/Paper';
+
+const style = {
+  width: 172,
+  height: 172,
+  margin: 10,
+  textAlign: 'center',
+  display: 'inline-block',
+};
 
 class List extends Component {
 
@@ -23,11 +32,22 @@ class List extends Component {
   }
 
   componentDidMount() {
-    console.log(555, this);
+    // get list albums
     this.props.albumsActions.get();
   }
 
   render() {
+    const { records } = this.props.album;
+
+    const list = records.map((item) => {
+      return (
+        <Paper style={style} zDepth={2} key={item.id}>
+          
+        </Paper>
+      );
+    });
+
+
     return (
       <div>
         <AppBar
@@ -42,13 +62,18 @@ class List extends Component {
             </IconButton>
           }
         />
-        <RaisedButton
-          label="Run"
-          secondary={true}
-          onClick={this.handleToRun}
-        />
+
+        <div className="page-container">
+          {list}
+        </div>
+
       </div>
     );
   }
 }
+// <RaisedButton
+// label="Run"
+// secondary={true}
+// onClick={this.handleToRun}
+// />
 export default List;
