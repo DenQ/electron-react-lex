@@ -187,6 +187,7 @@
   },
   "dependencies": {
     "devtron": "^1.4.0",
+    "dexie": "^2.0.1",
     "electron-debug": "^1.2.0",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
