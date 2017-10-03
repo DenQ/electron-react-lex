@@ -15,7 +15,15 @@ export function insert(docs, callback) {
 
 export function get() {
   return (dispatch) => {
-    console.log(albums);
+    albums.toArray()
+      .then((records) => {
+        dispatch({
+          type: 'list',
+          records,
+        })
+        // console.log(333, result);
+      });
+
     // if ('find' in albums) {
     //   albums.find()
     //     .then((res)=>{

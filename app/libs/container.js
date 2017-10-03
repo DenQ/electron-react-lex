@@ -7,7 +7,7 @@ import * as albumsActions from '../actions/albums';
 function mapStateToProps(state) {
   return {
     urlManager: state.urlManager,
-    albums: state.albums,
+    album: state.album,
     forms: state.form,
   };
 }
