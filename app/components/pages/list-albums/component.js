@@ -22,6 +22,11 @@ class List extends Component {
     transitionTo('/run-album/1');
   }
 
+  componentDidMount() {
+    console.log(555, this);
+    this.props.albumsActions.get();
+  }
+
   render() {
     return (
       <div>

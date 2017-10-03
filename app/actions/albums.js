@@ -17,3 +17,15 @@ export function insert(docs, callback) {
       .catch(error => console.error(error));
   };
 }
+
+export function get() {
+  return (dispatch) => {
+    console.log(albums);
+    // if ('find' in albums) {
+    //   albums.find()
+    //     .then((res)=>{
+    //       console.log(111, res);
+    //     })
+    // }
+  }
+}
