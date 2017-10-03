@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
 
+const validate = values => {
+  const errors = {}
+  if (!values.name) {
+    errors.name = 'Required'
+  }
+  return errors;
+}
+
 class AddAlbum extends Component {
 
   render() {
@@ -37,5 +45,5 @@ class AddAlbum extends Component {
 // </div>
 export default reduxForm({
   form: 'addAlbum',
-
+  validate,
 })(AddAlbum);

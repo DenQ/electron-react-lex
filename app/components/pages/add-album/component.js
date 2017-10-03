@@ -28,6 +28,7 @@ export default class AddAlbum extends Component {
     // const selector = formValueSelector('addAlbum');
     // const values = selector(state, 'name', 'description');
     const state = this.props.forms.addAlbum;
+    console.log(123, state);
     const { values } = state;
 
     insert([values], (dispatch, record) => {
@@ -39,6 +40,15 @@ export default class AddAlbum extends Component {
   }
 
   render() {
+    const { forms } = this.props;
+    let isValidForm = false;
+    if ('addAlbum' in forms) {
+      const stateForm = this.props.forms.addAlbum;
+      // const isValid = typeof(stateForm.syncErrors) === undefined;
+      isValidForm = !('syncErrors' in stateForm);
+
+    }
+    console.log(222, isValidForm);
     return (
       <div>
         <AppBar
@@ -55,13 +65,13 @@ export default class AddAlbum extends Component {
         />
 
         <Form />
-
+        
         <RaisedButton
           label="Save & to edit"
           secondary={true}
+          disabled={!isValidForm}
           onClick={this.handleToEdit}
         />
-
 
       </div>
     );

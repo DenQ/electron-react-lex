@@ -1,18 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Root from './containers/Root';
-import { configureStore, history } from './store/configureStore';
-
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import { ipcRenderer } from 'electron';
+import { push } from 'react-router-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+import Root from './containers/Root';
+import { configureStore, history } from './store/configureStore';
+// import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+// import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
-import IndigoOrangeThema from './themes/dark-indigo-orange';
-import { ipcRenderer } from 'electron';
+// import IndigoOrangeThema from './themes/dark-indigo-orange';
+
 import './app.global.scss';
-import { push } from 'react-router-redux'
 
 const store = configureStore();
 

@@ -1,6 +1,7 @@
 import {
   indigo300, indigo700, indigo900,
-  pinkA200,
+  pinkA100, pinkA200, pinkA400, pinkA700,
+  pink500, pink700,
   grey100, grey300, grey400, grey500,
   cyan500, cyan700,
   white, darkBlack, fullBlack
@@ -16,8 +17,8 @@ export default {
     primary2Color: indigo700,
     primary3Color: indigo300,
     accent1Color: pinkA200,
-    accent2Color: grey100,
-    accent3Color: grey500,
+    accent2Color: pinkA100,
+    accent3Color: pinkA400,
     textColor: white,
     alternateTextColor: white,
     canvasColor: white,
@@ -26,5 +27,9 @@ export default {
     pickerHeaderColor: cyan500,
     clockCircleColor: fade(darkBlack, 0.07),
     shadowColor: fullBlack,
+  },
+  raisedButton: {
+    disabledColor: pinkA100,
+    disabledTextColor: fade(white, 0.6),
   },
 };
