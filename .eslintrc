@@ -4,7 +4,7 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "extends": "airbnb",
+  "extends": "eslint:recommended",
   "env": {
     "browser": true,
     "node": true

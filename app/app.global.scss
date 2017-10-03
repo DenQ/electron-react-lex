@@ -1,13 +1,7 @@
 @import "~font-awesome/css/font-awesome.css";
 
 $primary-color-dark:   #303F9F;
-$primary-color:        #3F51B5;
 $primary-color-light:  #C5CAE9;
-$primary-color-text:   #FFFFFF;
-$accent-color:         #FF4081;
-$primary-text-color:   #212121;
-$secondary-text-color: #757575;
-$divider-color:        #BDBDBD;
 
 body {
   position: relative;
@@ -18,4 +12,8 @@ body {
   font-family: Roboto;
   margin: 0px;
   padding: 0px;
+}
+
+form{
+  padding: 10px;
 }
