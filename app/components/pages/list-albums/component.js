@@ -1,17 +1,9 @@
-// @flow
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import Styles from '../../../styles/custom'
-import Paper from 'material-ui/Paper';
+import Styles from '../../../styles/custom';
+import AlbumPaper from '../../../containers/papers/album/container';
 
-const style = {
-  width: 172,
-  height: 172,
-  margin: 10,
-  textAlign: 'center',
-  display: 'inline-block',
-};
 
 class List extends Component {
 
@@ -41,9 +33,7 @@ class List extends Component {
 
     const list = records.map((item) => {
       return (
-        <Paper style={style} zDepth={2} key={item.id}>
-          
-        </Paper>
+        <AlbumPaper key={item.id} record={item}/>
       );
     });
 
