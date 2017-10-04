@@ -66,7 +66,7 @@ export default class AlbumPaper extends Component {
   }
 
   render() {
-    const { record, handleToRun, handleToEdit } = this.props;
+    const { record, handleToRun, handleToEdit, handleRemove } = this.props;
     return (
       <Paper style={styles.paper} zDepth={2} onClick={this.handlerOnClick}>
         <div style={styles.text}>
@@ -92,7 +92,7 @@ export default class AlbumPaper extends Component {
             <Menu>
               <MenuItem primaryText="Run" onClick={handleToRun}/>
               <MenuItem primaryText="Edit" onClick={handleToEdit} />
-              <MenuItem primaryText="Remove" />
+              <MenuItem primaryText="Remove" onClick={handleRemove}/>
             </Menu>
           </Popover>
         </div>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import Styles from '../../../styles/custom';
 import AlbumPaper from '../../../containers/papers/album/container';
+import Styles from '../../../styles/custom';
 
 class List extends Component {
 
@@ -11,6 +11,10 @@ class List extends Component {
     this.handleToAdd = this.handleToAdd.bind(this);
     this.handleToRun = this.handleToRun.bind(this);
     this.handleToEdit = this.handleToEdit.bind(this);
+  }
+
+  getList() {
+    this.props.albumsActions.get();
   }
 
   handleToAdd() {
@@ -28,9 +32,13 @@ class List extends Component {
     urlManagerActions.transitionTo(`/edit-album/${item.id}`);
   }
 
+  handleRemoveAlbum(item) {
+    const { albumsActions } = this.props;
+    albumsActions.remove(item, this.getList.bind(this));
+  }
+
   componentDidMount() {
-    // get list albums
-    this.props.albumsActions.get();
+    this.getList();
   }
 
   render() {
@@ -43,6 +51,7 @@ class List extends Component {
           record={item}
           handleToRun={this.handleToRun.bind(this, item)}
           handleToEdit={this.handleToEdit.bind(this, item)}
+          handleRemove={this.handleRemoveAlbum.bind(this, item)}
         />
       );
     });

@@ -13,6 +13,7 @@ export function insert(docs, callback) {
   };
 }
 
+// @todo - replace name function
 export function get() {
   return (dispatch) => {
     albums.toArray()
@@ -21,14 +22,13 @@ export function get() {
           type: 'list',
           records,
         })
-        // console.log(333, result);
       });
+  }
+}
 
-    // if ('find' in albums) {
-    //   albums.find()
-    //     .then((res)=>{
-    //       console.log(111, res);
-    //     })
-    // }
+export function remove(doc, callback) {
+  return (dispatch) => {
+    albums.delete(doc.id)
+      .then(callback);
   }
 }
