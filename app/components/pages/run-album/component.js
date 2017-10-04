@@ -16,7 +16,15 @@ export default class RunAlbum extends Component {
     transitionTo('/');
   }
 
+  componentDidMount() {
+    const { match, albumsActions } = this.props;
+    const { id } = match.params;
+    albumsActions.get(id);
+  }
+
   render() {
+    // const { album } = this.props;
+    // console.log(111, album);
     return (
       <div>
         <AppBar

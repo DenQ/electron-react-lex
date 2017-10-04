@@ -26,6 +26,23 @@ export function list() {
   }
 }
 
+export function get(id) {
+  return (dispatch) => {
+    id = Number(id);
+    albums.get(id)
+      .then((record) => {
+        dispatch({
+          type: 'get',
+          record,
+        });
+        albums.update(id, {
+          lastOpened: +new Date,
+        });
+      });
+  }
+
+}
+
 export function remove(doc, callback) {
   return (dispatch) => {
     albums.delete(doc.id)
