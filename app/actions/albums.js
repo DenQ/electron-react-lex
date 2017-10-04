@@ -1,19 +1,51 @@
 import { push } from 'react-router-redux'
-import db from '../database';
-import lastInsertElement from '../utils/last-insert-element';
+import db from '../db/lex.dexie';
 
-const albums = db.collection('albums');
+const { albums } = db;
 
 export function insert(docs, callback) {
   return (dispatch) => {
-    albums.insert(docs)
-      .then(() => {
-        return lastInsertElement(albums);
-      })
-      .then((result) => {
-        const record = result.length ? result[0] : null;
-        callback(dispatch, record);
+    docs.createdDT = +new Date;
+    albums.add(docs)
+      .then((id) => {
+        callback(dispatch, { id });
       })
       .catch(error => console.error(error));
   };
+}
+
+export function list() {
+  return (dispatch) => {
+    albums.toArray()
+      .then((records) => {
+        dispatch({
+          type: 'list',
+          records,
+        })
+      });
+  }
+}
+
+export function get(id) {
+  return (dispatch) => {
+    id = Number(id);
+    albums.get(id)
+      .then((record) => {
+        dispatch({
+          type: 'get',
+          record,
+        });
+        albums.update(id, {
+          lastOpened: +new Date,
+        });
+      });
+  }
+
+}
+
+export function remove(doc, callback) {
+  return (dispatch) => {
+    albums.delete(doc.id)
+      .then(callback);
+  }
 }

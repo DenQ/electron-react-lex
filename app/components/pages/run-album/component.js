@@ -16,11 +16,24 @@ export default class RunAlbum extends Component {
     transitionTo('/');
   }
 
+  componentDidMount() {
+    const { match, albumsActions } = this.props;
+    const { id } = match.params;
+    albumsActions.get(id);
+  }
+
   render() {
+    const { album } = this.props;
+    const name = (() => {
+      if (album && album.record) {
+        return album.record.name;
+      } return '';
+    })();
+
     return (
       <div>
         <AppBar
-          title="Run album"
+          title={'Run' + ' - ' + name}
           iconElementLeft={
             <IconButton
               style={Styles.iconButton.large}

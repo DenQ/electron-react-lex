@@ -30,10 +30,10 @@ export default class AddAlbum extends Component {
     const state = this.props.forms.addAlbum;
     const { values } = state;
 
-    insert([values], (dispatch, record) => {
+    insert(values, (dispatch, record) => {
       if (record) {
         const { transitionTo } = this.props.urlManagerActions;
-        transitionTo(`/edit-album/${record._id}`);
+        transitionTo(`/edit-album/${record.id}`);
       }
     });
   }
