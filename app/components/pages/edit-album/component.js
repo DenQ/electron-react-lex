@@ -22,11 +22,24 @@ export default class EditAlbum extends Component {
     transitionTo(`/album-run/${id}`);
   }
 
+  componentDidMount() {
+    const { match, albumsActions } = this.props;
+    const { id } = match.params;
+    albumsActions.get(id);
+  }
+
   render() {
+    const { album } = this.props;
+    const name = (() => {
+      if (album && album.record) {
+        return album.record.name;
+      } return '';
+    })();
+
     return (
       <div>
         <AppBar
-          title="Edit album"
+          title={'Edit album' + ' - ' + name}
           iconElementLeft={
             <IconButton
               style={Styles.iconButton.large}
