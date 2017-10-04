@@ -1,5 +1,5 @@
-import { LIST, GET, ADD } from '../constants/album';;
-import db from '../db/lex.dexie';
+import { LIST, GET, ADD } from 'constants/album';
+import db from 'db/lex.dexie';
 
 const { albums } = db;
 
@@ -7,21 +7,16 @@ export function insert(docs, callback) {
   return (dispatch) => {
     docs.createdDT = +new Date;
     albums.add(docs)
-      .then((id) => {
-        callback(dispatch, { id });
-      })
+      .then((id) => callback(dispatch, { id }) )
       .catch(error => console.error(error));
   };
 }
 
 export function list() {
   return (dispatch) => {
-    albums.toArray()
+    return albums.toArray()
       .then((records) => {
-        dispatch({
-          type: LIST,
-          records,
-        })
+        return dispatch({ type: LIST, records });
       });
   }
 }
@@ -29,23 +24,19 @@ export function list() {
 export function get(id) {
   return (dispatch) => {
     id = Number(id);
-    albums.get(id)
+    return albums.get(id)
       .then((record) => {
-        dispatch({
-          type: GET,
-          record,
-        });
-        albums.update(id, {
+        dispatch({ type: GET, record });
+        return albums.update(id, {
           lastOpened: +new Date,
         });
       });
   }
-
 }
 
 export function remove(doc, callback) {
-  return (dispatch) => {
-    albums.delete(doc.id)
+  return (/*dispatch*/) => {
+    return albums.delete(doc.id)
       .then(callback);
   }
 }
