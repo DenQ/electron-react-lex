@@ -33,6 +33,9 @@ export default {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
+    alias: {
+      lex: path.resolve(__dirname, 'app'),
+    },
     extensions: ['.js', '.jsx', '.json'],
     modules: [
       path.join(__dirname, 'app'),
