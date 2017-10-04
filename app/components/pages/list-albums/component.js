@@ -14,7 +14,7 @@ class List extends Component {
   }
 
   getList() {
-    this.props.albumsActions.get();
+    this.props.albumsActions.list();
   }
 
   handleToAdd() {

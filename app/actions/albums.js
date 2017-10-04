@@ -14,8 +14,7 @@ export function insert(docs, callback) {
   };
 }
 
-// @todo - replace name function
-export function get() {
+export function list() {
   return (dispatch) => {
     albums.toArray()
       .then((records) => {
