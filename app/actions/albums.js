@@ -5,6 +5,7 @@ const { albums } = db;
 
 export function insert(docs, callback) {
   return (dispatch) => {
+    docs.createdDT = +new Date;
     albums.add(docs)
       .then((id) => {
         callback(dispatch, { id });
