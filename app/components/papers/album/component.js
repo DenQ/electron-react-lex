@@ -7,8 +7,8 @@ import MenuItem from 'material-ui/MenuItem';
 
 const styles = {
   paper: {
-    width: 172,
-    height: 172,
+    width: 167  ,
+    height: 165,
     margin: 10,
     textAlign: 'center',
     display: 'inline-block',
@@ -70,6 +70,7 @@ export default class AlbumPaper extends Component {
           <RaisedButton
             onClick={this.handleTouchTap}
             label="Click me"
+            primary={true}
             fullWidth={true}
           />
           <Popover
