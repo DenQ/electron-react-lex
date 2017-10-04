@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import { Paper } from 'material-ui';
-import RaisedButton from 'material-ui/RaisedButton';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
+import { Paper, RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
+import PlayIcon from 'material-ui/svg-icons/av/play-circle-filled';
+import { indigo300 } from 'material-ui/styles/colors';
 
 const styles = {
   paper: {
     width: 167  ,
-    height: 165,
+    height: 167,
     margin: 10,
     textAlign: 'center',
     display: 'inline-block',
-    backgroundColor: 'silver',
+    backgroundColor: 'white',
   },
   menu: {
     position: 'relative',
-    top: 118,
+    top: 50,
   },
   text: {
     color: 'black',
+  },
+  icon: {
+    play: {
+      cursor: 'pointer',
+      position: 'relative',
+      top: 20,
+      width: 60,
+      height: 60,
+    }
   }
 };
 
@@ -65,6 +72,8 @@ export default class AlbumPaper extends Component {
         <div style={styles.text}>
           {record.name}
         </div>
+
+        <PlayIcon style={styles.icon.play} color={indigo300}/>
 
         <div style={styles.menu}>
           <RaisedButton
