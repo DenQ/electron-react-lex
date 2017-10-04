@@ -15,5 +15,7 @@ body {
 }
 
 .page-container{
-  padding: 10px;;
+  padding: 10px;
+  overflow-x: auto;
+  height: 700px;
 }

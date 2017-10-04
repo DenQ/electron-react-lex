@@ -4,13 +4,6 @@ import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import Styles from '../../../styles/custom';
 import AlbumPaper from '../../../containers/papers/album/container';
 
-const styles = {
-  container: {
-    overflowX: 'auto',
-    height: 700,
-  }
-}
-
 class List extends Component {
 
   constructor(props) {
@@ -59,7 +52,7 @@ class List extends Component {
           }
         />
 
-        <div className="page-container" style={styles.container}>
+        <div className="page-container">
           {list}
         </div>
 
@@ -67,9 +60,5 @@ class List extends Component {
     );
   }
 }
-// <RaisedButton
-// label="Run"
-// secondary={true}
-// onClick={this.handleToRun}
-// />
+
 export default List;
