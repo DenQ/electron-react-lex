@@ -1,4 +1,5 @@
 import compare from '../utils/compare-last-opened';
+import { LIST, GET, ADD } from '../constants/album';;
 
 const initialState = {
   records: [],
@@ -7,14 +8,14 @@ const initialState = {
 
 export default function(state = initialState, action) {
   const { type, records, record } = action;
-  if (type === 'list') {
+  if (type === LIST) {
     records.sort(compare);
     return { records };
   }
-  if (type === 'add') {
+  if (type === ADD) {
     return state;
   }
-  if (type === 'get') {
+  if (type === GET) {
     return { record, records: [] };
   }
   return state;

@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux'
+import { LIST, GET, ADD } from '../constants/album';;
 import db from '../db/lex.dexie';
 
 const { albums } = db;
@@ -19,7 +19,7 @@ export function list() {
     albums.toArray()
       .then((records) => {
         dispatch({
-          type: 'list',
+          type: LIST,
           records,
         })
       });
@@ -32,7 +32,7 @@ export function get(id) {
     albums.get(id)
       .then((record) => {
         dispatch({
-          type: 'get',
+          type: GET,
           record,
         });
         albums.update(id, {
