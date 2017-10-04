@@ -66,7 +66,7 @@ export default class AlbumPaper extends Component {
   }
 
   render() {
-    const { record } = this.props;
+    const { record, handleToRun, handleToEdit } = this.props;
     return (
       <Paper style={styles.paper} zDepth={2} onClick={this.handlerOnClick}>
         <div style={styles.text}>
@@ -78,7 +78,7 @@ export default class AlbumPaper extends Component {
         <div style={styles.menu}>
           <RaisedButton
             onClick={this.handleTouchTap}
-            label="Click me"
+            label="Options"
             primary={true}
             fullWidth={true}
           />
@@ -90,8 +90,8 @@ export default class AlbumPaper extends Component {
             onRequestClose={this.handleRequestClose}
           >
             <Menu>
-              <MenuItem primaryText="Run" />
-              <MenuItem primaryText="Edit" />
+              <MenuItem primaryText="Run" onClick={handleToRun}/>
+              <MenuItem primaryText="Edit" onClick={handleToEdit} />
               <MenuItem primaryText="Remove" />
             </Menu>
           </Popover>

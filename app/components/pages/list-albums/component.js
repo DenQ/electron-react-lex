@@ -10,16 +10,22 @@ class List extends Component {
     super(props);
     this.handleToAdd = this.handleToAdd.bind(this);
     this.handleToRun = this.handleToRun.bind(this);
+    this.handleToEdit = this.handleToEdit.bind(this);
   }
 
   handleToAdd() {
-    const { transitionTo } = this.props.urlManagerActions;
-    transitionTo('/add-album');
+    const { urlManagerActions } = this.props;
+    urlManagerActions.transitionTo('/add-album');
   }
 
-  handleToRun() {
-    const { transitionTo } = this.props.urlManagerActions;
-    transitionTo('/run-album/1');
+  handleToRun(item) {
+    const { urlManagerActions } = this.props;
+    urlManagerActions.transitionTo(`/run-album/${item.id}`);
+  }
+
+  handleToEdit(item) {
+    const { urlManagerActions } = this.props;
+    urlManagerActions.transitionTo(`/edit-album/${item.id}`);
   }
 
   componentDidMount() {
@@ -32,7 +38,12 @@ class List extends Component {
 
     const list = records.map((item) => {
       return (
-        <AlbumPaper key={item.id} record={item}/>
+        <AlbumPaper
+          key={item.id}
+          record={item}
+          handleToRun={this.handleToRun.bind(this, item)}
+          handleToEdit={this.handleToEdit.bind(this, item)}
+        />
       );
     });
 
