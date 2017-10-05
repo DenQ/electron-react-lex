@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import AlbumPaper from '../../../containers/papers/album/container';
-import Styles from '../../../styles/custom';
+import AlbumPaper from 'lex/containers/papers/album/container';
+import Styles from 'lex/styles/custom';
 
 class List extends Component {
 

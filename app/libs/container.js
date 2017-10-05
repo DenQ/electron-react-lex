@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as urlManagerActions from '../actions/url-manager';
-import * as albumsActions from '../actions/albums';
+import * as urlManagerActions from 'lex/actions/url-manager';
+import * as albumsActions from 'lex/actions/albums';
 
 function mapStateToProps(state) {
   return {

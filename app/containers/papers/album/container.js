@@ -1,4 +1,4 @@
-import Container from '../../../libs/container';
-import Component from '../../../components/papers/album/component';
+import Container from 'lex/libs/container';
+import Component from 'lex/components/papers/album/component';
 
 export default Container(Component);

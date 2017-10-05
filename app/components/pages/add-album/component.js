@@ -1,10 +1,9 @@
-// @flow
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import { formValueSelector } from 'redux-form';
-import Styles from '../../../styles/custom'
-import Form from '../../forms/add-album';
+import Styles from 'lex/styles/custom';
+import Form from 'lex/components/forms/add-album';
 
 export default class AddAlbum extends Component {
 
@@ -14,13 +13,9 @@ export default class AddAlbum extends Component {
     this.handleToEdit = this.handleToEdit.bind(this);
   }
 
-  handleSubmit() {
-    console.log(111);
-  }
-
   handleToList() {
-    const { transitionTo } = this.props.urlManagerActions;
-    transitionTo('/');
+    const { urlManagerActions } = this.props;
+    urlManagerActions.transitionTo('/');
   }
 
   handleToEdit() {

@@ -13,7 +13,7 @@ const validate = values => {
 class AddAlbum extends Component {
 
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
           <div>
@@ -39,10 +39,6 @@ class AddAlbum extends Component {
 
 }
 
-// <div>
-// <button type="submit" disabled={pristine || submitting}>Submit</button>
-// <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-// </div>
 export default reduxForm({
   form: 'addAlbum',
   validate,

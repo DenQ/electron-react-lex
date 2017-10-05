@@ -1,8 +1,7 @@
-// @flow
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
-import Styles from '../../../styles/custom'
+import Styles from 'lex/styles/custom';
 
 export default class EditAlbum extends Component {
   constructor(props) {
