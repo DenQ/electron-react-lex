@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import { formValueSelector } from 'redux-form';
+import Form from 'lex/components/forms/add-album/component';
 import Styles from 'lex/styles/custom';
-import Form from 'lex/forms/add-album/component';
 
-export default class AddAlbum extends Component {
+export default class AddAlbum extends React.Component {
 
   constructor(props) {
     super(props);

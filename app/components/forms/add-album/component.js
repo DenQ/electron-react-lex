@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
 
 const validate = values => {
-  const errors = {}
+  const errors = {};
   if (!values.name) {
-    errors.name = 'Required'
+    errors.name = 'Required';
   }
   return errors;
-}
+};
 
-class AddAlbum extends Component {
+class AddAlbum extends React.Component {
 
   render() {
     const { handleSubmit } = this.props;
