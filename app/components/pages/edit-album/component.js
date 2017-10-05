@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
+import AddWordForm from 'lex/components/forms/add-word/component';
 import Styles from 'lex/styles/custom';
 
 export default class EditAlbum extends Component {
@@ -49,11 +50,10 @@ export default class EditAlbum extends Component {
             </IconButton>
           }
         />
-        <RaisedButton
-          label="Save & Run"
-          secondary={true}
-          onClick={this.handleToRun}
-        />
+        <div className="page-container">
+          <AddWordForm form={'wordAdd1'} />
+          <AddWordForm form={'wordAdd2'} />
+        </div>
       </div>
     );
   }
