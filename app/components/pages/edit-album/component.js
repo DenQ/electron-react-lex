@@ -13,15 +13,21 @@ export default class EditAlbum extends Component {
   }
 
   handleSave(formName) {
-    const state = this.props.forms[formName];
+    const { wordsActions, forms, match, urlManagerActions } = this.props;
+    const { id } = match.params;
+    const state = forms[formName];
     const { values } = state;
-    console.log(222, this, values);
-    // const selector = formValueSelector(form);
-    // const state = this.props.form;
-    // const values = selector(null, 'word', 'translate');
-    // const { values } = state;
+    const payload = {
+      originalWord: values.word,
+      translateWord: values.translate,
+      albumId: Number(id),
+    }
+    wordsActions.insert(payload, (dispatch, record) => {
+      if (record) {
+        // need reload list words
+      }
+    });
 
-  //   console.log(111, this, values);
   }
 
   handleToList() {

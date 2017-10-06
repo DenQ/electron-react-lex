@@ -55,12 +55,14 @@ class AddWord extends React.Component {
             name="translate"
             style={styles.field}
           />
+
           <IconButton
             onClick={this.handleSave}
             disabled={invalid}
           >
             <IconSave />
           </IconButton>
+
           <IconButton>
             <IconRemove />
           </IconButton>

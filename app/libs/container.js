@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as urlManagerActions from 'lex/actions/url-manager';
 import * as albumsActions from 'lex/actions/albums';
-import * as wordsActions from 'lex/actions/word';
+import * as wordsActions from 'lex/actions/words';
 
 function mapStateToProps(state) {
   return {
