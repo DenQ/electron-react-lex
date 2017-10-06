@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
-import AddWordForm from 'lex/components/forms/add-word/component';
 import Styles from 'lex/styles/custom';
+// import AddWordForm from 'lex/components/forms/add-word/component';
+import AddWordForm from 'lex/containers/forms/add-word/container';
 
 export default class EditAlbum extends Component {
   constructor(props) {
@@ -10,6 +11,12 @@ export default class EditAlbum extends Component {
     this.handleToList = this.handleToList.bind(this);
     this.handleToRun = this.handleToRun.bind(this);
     this.handleSave = this.handleSave.bind(this);
+
+  }
+
+  getListWords(id) {
+    const { wordsActions } = this.props;
+    wordsActions.list(id);
   }
 
   handleSave(formName) {
@@ -24,7 +31,7 @@ export default class EditAlbum extends Component {
     }
     wordsActions.insert(payload, (dispatch, record) => {
       if (record) {
-        // need reload list words
+        this.getListWords(id);
       }
     });
 
@@ -45,15 +52,30 @@ export default class EditAlbum extends Component {
     const { match, albumsActions } = this.props;
     const { id } = match.params;
     albumsActions.get(id);
+    this.getListWords(id);
   }
 
   render() {
-    const { album } = this.props;
+    const { album, word, match } = this.props;
+    const { id } = match.params;
+    const words = word.records;
     const name = (() => {
       if (album && album.record) {
         return album.record.name;
       } return '';
     })();
+
+    const listForm = words.map((item, index) => {
+      const formName = `wordAdd${id}${index}`;
+      return (
+        <AddWordForm
+          key={index}
+          record={item}
+          form={formName}
+          handleSave={this.handleSave}
+        />
+      );
+    });
 
     return (
       <div>
@@ -70,8 +92,7 @@ export default class EditAlbum extends Component {
           }
         />
         <div className="page-container">
-          <AddWordForm form={'wordAdd11'} handleSave={this.handleSave} />
-          <AddWordForm form={'wordAdd21'} handleSave={this.handleSave} />
+          {listForm}
         </div>
       </div>
     );

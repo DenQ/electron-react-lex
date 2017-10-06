@@ -12,15 +12,11 @@ export function insert(docs, callback) {
   };
 }
 
-export function list(albumId) {
-  albumId = Number(albumId);
-  return (dispatch) => {
-    return words
-      .where({ albumId })
-      .toArray()
-      .then((records) => {
-        return dispatch({ type: LIST, records });
-      })
-      .catch(error => console.error(error));
-  }
-}
+// export function list(albumId) {
+//   return (dispatch) => {
+//     return words.toArray()
+//       .then((records) => {
+//         return dispatch({ type: LIST, records });
+//       });
+//   }
+// }

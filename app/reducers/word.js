@@ -1,5 +1,5 @@
 import compare from 'lex/utils/compare-last-opened';
-import { LIST, GET, ADD } from 'lex/constants/album';
+import { LIST, GET, ADD } from 'lex/constants/word';
 
 const initialState = {
   records: [],

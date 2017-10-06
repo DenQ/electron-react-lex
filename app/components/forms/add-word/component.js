@@ -5,6 +5,7 @@ import { formValueSelector } from 'redux-form';
 import IconButton from 'material-ui/IconButton';
 import IconSave from 'material-ui/svg-icons/navigation/check';
 import IconRemove from 'material-ui/svg-icons/content/remove-circle';
+import { connect } from 'react-redux';
 
 const styles = {
   field: {
@@ -29,6 +30,7 @@ class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
+    // this.props.initialize();
   }
 
   handleSave() {
@@ -36,6 +38,9 @@ class AddWord extends React.Component {
     if (handleSave && form) {
       handleSave(form);
     }
+  }
+  componentDidMount() {
+    // const { form, selfFormActions, record } = this.props;
   }
 
   render() {
