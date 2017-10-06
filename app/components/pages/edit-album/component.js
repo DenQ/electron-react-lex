@@ -9,6 +9,19 @@ export default class EditAlbum extends Component {
     super(props);
     this.handleToList = this.handleToList.bind(this);
     this.handleToRun = this.handleToRun.bind(this);
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave(formName) {
+    const state = this.props.forms[formName];
+    const { values } = state;
+    console.log(222, this, values);
+    // const selector = formValueSelector(form);
+    // const state = this.props.form;
+    // const values = selector(null, 'word', 'translate');
+    // const { values } = state;
+
+  //   console.log(111, this, values);
   }
 
   handleToList() {
@@ -51,8 +64,8 @@ export default class EditAlbum extends Component {
           }
         />
         <div className="page-container">
-          <AddWordForm form={'wordAdd1'} />
-          <AddWordForm form={'wordAdd2'} />
+          <AddWordForm form={'wordAdd11'} handleSave={this.handleSave} />
+          <AddWordForm form={'wordAdd21'} handleSave={this.handleSave} />
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
+import { formValueSelector } from 'redux-form';
 import IconButton from 'material-ui/IconButton';
 import IconSave from 'material-ui/svg-icons/navigation/check';
 import IconRemove from 'material-ui/svg-icons/content/remove-circle';
@@ -25,6 +26,18 @@ const validate = values => {
 
 class AddWord extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave() {
+    const { handleSave, form } = this.props;
+    if (handleSave && form) {
+      handleSave(form);
+    }
+  }
+
   render() {
     const { handleSubmit, invalid } = this.props;
     return (
@@ -42,12 +55,15 @@ class AddWord extends React.Component {
             name="translate"
             style={styles.field}
           />
-        <IconButton disabled={invalid}>
-          <IconSave />
-        </IconButton>
-        <IconButton>
-          <IconRemove />
-        </IconButton>
+          <IconButton
+            onClick={this.handleSave}
+            disabled={invalid}
+          >
+            <IconSave />
+          </IconButton>
+          <IconButton>
+            <IconRemove />
+          </IconButton>
         </div>
       </form>
     );

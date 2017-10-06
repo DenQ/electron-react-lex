@@ -1,5 +1,5 @@
 import db from 'lex/db/lex.dexie';
-import { LIST, GET, ADD } from 'lex/constants/album';
+import { LIST, GET } from 'lex/constants/album';
 
 const { albums } = db;
 
