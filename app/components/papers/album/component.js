@@ -73,7 +73,7 @@ export default class AlbumPaper extends Component {
           {record.name}
         </div>
 
-        <PlayIcon style={styles.icon.play} color={indigo300}/>
+        <PlayIcon style={styles.icon.play} color={indigo300} />
 
         <div style={styles.menu}>
           <RaisedButton
@@ -90,9 +90,9 @@ export default class AlbumPaper extends Component {
             onRequestClose={this.handleRequestClose}
           >
             <Menu>
-              <MenuItem primaryText="Run" onClick={handleToRun}/>
+              <MenuItem primaryText="Run" onClick={handleToRun} />
               <MenuItem primaryText="Edit" onClick={handleToEdit} />
-              <MenuItem primaryText="Remove" onClick={handleRemove}/>
+              <MenuItem primaryText="Remove" onClick={handleRemove} />
             </Menu>
           </Popover>
         </div>

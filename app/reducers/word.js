@@ -1,15 +1,15 @@
-import compare from 'lex/utils/compare-last-opened';
-import { LIST, GET, ADD } from 'lex/constants/album';
+import compare from 'lex/utils/compare-by-id';
+import { LIST, GET, ADD } from 'lex/constants/word';
 
 const initialState = {
   records: [],
-  record: {}
+  record: {},
 }
 
 export default function(state = initialState, action) {
   const { type, records, record } = action;
   if (type === LIST) {
-    records.sort(compare);
+    records.sort(compare(false));
     return { records };
   }
   if (type === ADD) {

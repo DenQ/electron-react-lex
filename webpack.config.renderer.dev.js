@@ -55,6 +55,9 @@ export default merge.smart(baseConfig, {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
+        alias: {
+          lex: path.resolve(__dirname, 'app'),
+        },
         use: {
           loader: 'babel-loader',
           options: {
