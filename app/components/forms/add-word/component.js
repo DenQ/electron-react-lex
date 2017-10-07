@@ -30,7 +30,7 @@ class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
-    console.log(12, props);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   handleSave() {
@@ -42,6 +42,14 @@ class AddWord extends React.Component {
       reset();
     }
   }
+
+  handleRemove() {
+    const { handleRemove, record } = this.props;
+    if (handleRemove && record) {
+      handleRemove(record);
+    }
+  }
+
   componentWillMount() {
     const { record, load, form } = this.props;
     if (form, record) {
@@ -75,9 +83,11 @@ class AddWord extends React.Component {
             <IconSave />
           </IconButton>
 
-          <IconButton>
+          <IconButton
+            onClick={this.handleRemove}
+          >
             <IconRemove />
-      </IconButton>
+          </IconButton>
         </div>
       </form>
     );

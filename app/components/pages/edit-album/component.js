@@ -11,6 +11,7 @@ export default class EditAlbum extends Component {
     this.handleToList = this.handleToList.bind(this);
     this.handleToRun = this.handleToRun.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
 
   }
 
@@ -20,7 +21,7 @@ export default class EditAlbum extends Component {
   }
 
   handleSave(formName, initialRecord) {
-    const { wordsActions, forms, match, urlManagerActions } = this.props;
+    const { wordsActions, forms, match } = this.props;
     const { id } = match.params;
     const state = forms[formName];
     const { values } = state;
@@ -42,7 +43,14 @@ export default class EditAlbum extends Component {
         }
       });
     }
+  }
 
+  handleRemove(record) {
+    const { wordsActions, match } = this.props;
+    const { id } = match.params;
+    wordsActions.remove(record.id, () => {
+      this.getListWords(id);
+    });
   }
 
   handleToList() {
@@ -81,6 +89,7 @@ export default class EditAlbum extends Component {
           record={item}
           form={formName}
           handleSave={this.handleSave}
+          handleRemove={this.handleRemove}
         />
       );
     });

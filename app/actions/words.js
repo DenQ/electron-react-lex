@@ -20,6 +20,14 @@ export function update(id, docs, callback) {
   };
 }
 
+export function remove(id, callback) {
+  return (dispatch) => {
+    words.delete(id)
+      .then(() => callback(dispatch))
+      .catch(error => console.error(error));
+  };
+}
+
 export function list(albumId) {
   albumId = Number(albumId);
   return (dispatch) => {
