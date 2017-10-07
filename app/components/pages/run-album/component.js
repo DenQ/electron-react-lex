@@ -20,6 +20,7 @@ export default class RunAlbum extends Component {
   constructor(props) {
     super(props);
     this.handleToList = this.handleToList.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleToList() {
@@ -34,6 +35,13 @@ export default class RunAlbum extends Component {
     runActions.list(id);
   }
 
+  handleSelect() {
+    const { match, runActions } = this.props;
+    const { id } = match.params;
+    // albumsActions.get(id);
+    runActions.list(id);
+  }
+
   render() {
     const { album, run } = this.props;
     console.log(run);
@@ -42,6 +50,20 @@ export default class RunAlbum extends Component {
         return album.record.name;
       } return '';
     })();
+
+    const listAnswers = run.answers.map((item, index) => {
+      const key = `${item.id}${index}`;
+      return (<RaisedButton
+        labelStyle={styles.button.title}
+        onClick={this.handleSelect}
+        label={item.originalWord}
+        style={styles.button}
+        fullWidth={true}
+        primary={true}
+        key={key}
+      />);
+    });
+    const question = run.question || {originalWord: '', translateWord: ''};
 
     return (
       <div>
@@ -59,54 +81,14 @@ export default class RunAlbum extends Component {
         />
         <div className="page-container">
           <RaisedButton
+            key="csdc"
             labelStyle={styles.button.title}
+            label={question.translateWord}
             style={styles.button}
-            label="World"
             secondary={true}
             fullWidth={true}
           />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Мир"
-            primary={true}
-            fullWidth={true}
-          />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Цвет"
-            primary={true}
-            fullWidth={true}
-          />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Орех"
-            primary={true}
-            fullWidth={true}
-          />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Мир"
-            primary={true}
-            fullWidth={true}
-          />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Цвет"
-            primary={true}
-            fullWidth={true}
-          />
-          <RaisedButton
-            labelStyle={styles.button.title}
-            style={styles.button}
-            label="Орех"
-            primary={true}
-            fullWidth={true}
-          />
+          {listAnswers}
         </div>
       </div>
     );
