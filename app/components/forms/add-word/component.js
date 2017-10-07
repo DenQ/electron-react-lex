@@ -9,7 +9,7 @@ import { pullData } from 'lex/actions/form-add-word';
 
 const styles = {
   field: {
-    width: 230,
+    width: 223,
     margin: 5,
   }
 }
