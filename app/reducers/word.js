@@ -3,7 +3,7 @@ import { LIST, GET, ADD } from 'lex/constants/word';
 
 const initialState = {
   records: [],
-  record: {}
+  record: {},
 }
 
 export default function(state = initialState, action) {

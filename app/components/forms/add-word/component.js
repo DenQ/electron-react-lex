@@ -1,11 +1,11 @@
 import React from 'react';
 import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
-import { formValueSelector } from 'redux-form';
 import IconButton from 'material-ui/IconButton';
 import IconSave from 'material-ui/svg-icons/navigation/check';
 import IconRemove from 'material-ui/svg-icons/content/remove-circle';
 import { connect } from 'react-redux';
+import { pullData } from 'lex/actions/form-add-word';
 
 const styles = {
   field: {
@@ -30,8 +30,6 @@ class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
-    // console.log(this);
-    // this.props.initialize();
   }
 
   handleSave() {
@@ -40,14 +38,18 @@ class AddWord extends React.Component {
       handleSave(form);
     }
   }
-  componentDidMount() {
-    // const { form, selfFormActions, record } = this.props;
+  componentWillMount() {
+    const { record, load, form } = this.props;
+    if (form, record.id) {
+      load(form, 'word', record.originalWord);
+      load(form, 'translate', record.translateWord);
+    }
   }
 
   render() {
-    const { handleSubmit, invalid } = this.props;
+    const { handleSubmit, invalid, record } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} key={record.id}>
         <div>
           <Field
             placeholder="Word"
@@ -71,7 +73,7 @@ class AddWord extends React.Component {
 
           <IconButton>
             <IconRemove />
-          </IconButton>
+      </IconButton>
         </div>
       </form>
     );
@@ -79,7 +81,14 @@ class AddWord extends React.Component {
 
 }
 
-export default reduxForm({
+AddWord = reduxForm({
+  enableReinitialize: true,
   form: 'addWord',
   validate,
 })(AddWord);
+
+AddWord = connect(null, {
+  load: pullData
+})(AddWord);
+
+export default AddWord;

@@ -6,7 +6,6 @@ const initilState = {
 
 const reducer = (state = initilState, action) => {
   if (action.type === LOAD) {
-    console.log(12345, action, action.data);
     return {
       data: action.data,
     }
@@ -15,7 +14,6 @@ const reducer = (state = initilState, action) => {
 }
 
 export const load = data => {
-  console.log(2222);
   return { type: LOAD, data }
 }
 

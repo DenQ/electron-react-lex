@@ -3,7 +3,7 @@ import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
-import ExampleForm from 'lex/components/forms/example/component';
+// import ExampleForm from 'lex/components/forms/example/component';
 
 export default class EditAlbum extends Component {
   constructor(props) {
@@ -93,7 +93,6 @@ export default class EditAlbum extends Component {
         />
         <div className="page-container">
           {listForm}
-          <ExampleForm />
         </div>
       </div>
     );
