@@ -1,5 +1,5 @@
 import db from 'lex/db/lex.dexie';
-import { LIST, GET } from 'lex/constants/word';
+import { LIST } from 'lex/constants/word';
 
 const { words } = db;
 
@@ -23,7 +23,7 @@ export function update(id, docs, callback) {
 export function remove(id, callback) {
   return (dispatch) => {
     words.delete(id)
-      .then(() => callback(dispatch))
+      .then(() => callback(dispatch, { id }))
       .catch(error => console.error(error));
   };
 }

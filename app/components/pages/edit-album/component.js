@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
-import { AppBar, IconButton, RaisedButton } from 'material-ui';
+import { AppBar, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
 
+const nameMethods = [
+  'handleToList', 'handleToRun', 'handleSave',
+  'handleRemove', 'callbackList'
+];
+
 export default class EditAlbum extends Component {
   constructor(props) {
     super(props);
-    this.handleToList = this.handleToList.bind(this);
-    this.handleToRun = this.handleToRun.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
-
+    nameMethods.forEach((methodName) => {
+      this[methodName] = this[methodName].bind(this);
+    });
   }
 
   getListWords(id) {
     const { wordsActions } = this.props;
     wordsActions.list(id);
+  }
+
+  callbackList(dispatch, record) {
+    if (record) {
+      const {  match } = this.props;
+      const { id } = match.params;
+      this.getListWords(id);
+    }
   }
 
   handleSave(formName, initialRecord) {
@@ -30,26 +41,15 @@ export default class EditAlbum extends Component {
       albumId: Number(id),
     }
     if (initialRecord) {
-      wordsActions.update(initialRecord.id, payload, (dispatch, record) => {
-        if (record) {
-          this.getListWords(id);
-        }
-      })
+      wordsActions.update(initialRecord.id, payload, this.callbackList)
     } else {
-      wordsActions.insert(payload, (dispatch, record) => {
-        if (record) {
-          this.getListWords(id);
-        }
-      });
+      wordsActions.insert(payload, this.callbackList);
     }
   }
 
   handleRemove(record) {
-    const { wordsActions, match } = this.props;
-    const { id } = match.params;
-    wordsActions.remove(record.id, () => {
-      this.getListWords(id);
-    });
+    const { wordsActions } = this.props;
+    wordsActions.remove(record.id, this.callbackList);
   }
 
   handleToList() {
@@ -80,7 +80,7 @@ export default class EditAlbum extends Component {
       } return '';
     })();
 
-    const listForm = words.map((item, index) => {
+    const listForm = words.map((item) => {
       const formName = `wordAdd${id}${item.id}`;
       return (
         <AddWordForm
