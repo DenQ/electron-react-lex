@@ -28,13 +28,15 @@ export default class RunAlbum extends Component {
   }
 
   componentDidMount() {
-    const { match, albumsActions } = this.props;
+    const { match, albumsActions, runActions } = this.props;
     const { id } = match.params;
     albumsActions.get(id);
+    runActions.list(id);
   }
 
   render() {
-    const { album } = this.props;
+    const { album, run } = this.props;
+    console.log(run);
     const name = (() => {
       if (album && album.record) {
         return album.record.name;
