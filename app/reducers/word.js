@@ -9,7 +9,7 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, records, record } = action;
   if (type === LIST) {
-    // records.sort(compare(true));
+    records.sort(compare(false));
     return { records };
   }
   if (type === ADD) {

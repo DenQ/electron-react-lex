@@ -39,7 +39,7 @@ class AddWord extends React.Component {
       handleSave(form, record);
     }
     if (!record) {
-      reset();  
+      reset();
     }
   }
   componentWillMount() {

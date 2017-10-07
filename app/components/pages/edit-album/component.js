@@ -74,10 +74,10 @@ export default class EditAlbum extends Component {
     })();
 
     const listForm = words.map((item, index) => {
-      const formName = `wordAdd${id}${index}`;
+      const formName = `wordAdd${id}${item.id}`;
       return (
         <AddWordForm
-          key={index}
+          key={formName}
           record={item}
           form={formName}
           handleSave={this.handleSave}
