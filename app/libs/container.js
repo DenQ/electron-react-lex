@@ -12,6 +12,7 @@ function mapStateToProps(state) {
     album: state.album,
     word: state.word,
     forms: state.form,
+    
   };
 }
 

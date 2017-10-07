@@ -1,3 +1,5 @@
+const LOAD = 'redux-form-examples/account/LOAD';
+
 export function change(formName, fieldName, value) {
   return (dispatch) => {
     dispatch({
@@ -9,6 +11,15 @@ export function change(formName, fieldName, value) {
         persistentSubmitErrors: false,
       },
       payload: value,
+    })
+  };
+}
+
+export function pullData(data) {
+  return (dispatch) => {
+    dispatch({
+      type: LOAD,
+      data,
     })
   };
 }

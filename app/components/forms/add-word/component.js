@@ -30,6 +30,7 @@ class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
+    // console.log(this);
     // this.props.initialize();
   }
 
