@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
-import { AppBar, IconButton } from 'material-ui';
+import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
+
+const styles = {
+  button: {
+    marginTop: 3,
+    marginBottom: 3,
+    height: 60,
+    title: {
+      fontSize: 16,
+      fontWeight: 900,
+    }
+  }
+};
 
 export default class RunAlbum extends Component {
 
@@ -43,6 +55,57 @@ export default class RunAlbum extends Component {
             </IconButton>
           }
         />
+        <div className="page-container">
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="World"
+            secondary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Мир"
+            primary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Цвет"
+            primary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Орех"
+            primary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Мир"
+            primary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Цвет"
+            primary={true}
+            fullWidth={true}
+          />
+          <RaisedButton
+            labelStyle={styles.button.title}
+            style={styles.button}
+            label="Орех"
+            primary={true}
+            fullWidth={true}
+          />
+        </div>
       </div>
     );
   }
