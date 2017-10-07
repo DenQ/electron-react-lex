@@ -30,26 +30,30 @@ class AddWord extends React.Component {
   constructor(props) {
     super(props);
     this.handleSave = this.handleSave.bind(this);
+    console.log(12, props);
   }
 
   handleSave() {
-    const { handleSave, form } = this.props;
+    const { handleSave, form, record, reset } = this.props;
     if (handleSave && form) {
-      handleSave(form);
+      handleSave(form, record);
+    }
+    if (!record) {
+      reset();  
     }
   }
   componentWillMount() {
     const { record, load, form } = this.props;
-    if (form, record.id) {
+    if (form, record) {
       load(form, 'word', record.originalWord);
       load(form, 'translate', record.translateWord);
     }
   }
 
   render() {
-    const { handleSubmit, invalid, record } = this.props;
+    const { handleSubmit, invalid } = this.props;
     return (
-      <form onSubmit={handleSubmit} key={record.id}>
+      <form onSubmit={handleSubmit}>
         <div>
           <Field
             placeholder="Word"

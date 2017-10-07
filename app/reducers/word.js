@@ -1,4 +1,4 @@
-import compare from 'lex/utils/compare-last-opened';
+import compare from 'lex/utils/compare-by-id';
 import { LIST, GET, ADD } from 'lex/constants/word';
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
 export default function(state = initialState, action) {
   const { type, records, record } = action;
   if (type === LIST) {
-    records.sort(compare);
+    // records.sort(compare(true));
     return { records };
   }
   if (type === ADD) {

@@ -19,7 +19,7 @@ export default class EditAlbum extends Component {
     wordsActions.list(id);
   }
 
-  handleSave(formName) {
+  handleSave(formName, initialRecord) {
     const { wordsActions, forms, match, urlManagerActions } = this.props;
     const { id } = match.params;
     const state = forms[formName];
@@ -29,11 +29,19 @@ export default class EditAlbum extends Component {
       translateWord: values.translate,
       albumId: Number(id),
     }
-    wordsActions.insert(payload, (dispatch, record) => {
-      if (record) {
-        this.getListWords(id);
-      }
-    });
+    if (initialRecord) {
+      wordsActions.update(initialRecord.id, payload, (dispatch, record) => {
+        if (record) {
+          this.getListWords(id);
+        }
+      })
+    } else {
+      wordsActions.insert(payload, (dispatch, record) => {
+        if (record) {
+          this.getListWords(id);
+        }
+      });
+    }
 
   }
 
@@ -92,6 +100,11 @@ export default class EditAlbum extends Component {
           }
         />
         <div className="page-container">
+          <AddWordForm
+            key={'create-word'}
+            form={'createWord'}
+            handleSave={this.handleSave}
+          />
           {listForm}
         </div>
       </div>
