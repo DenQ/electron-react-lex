@@ -1,13 +1,10 @@
 import db from 'lex/db/lex.dexie';
 import compareRandom from 'lex/utils/compare-random';
+import getRandomInt from 'lex/utils/get-random';
 import { LIST } from 'lex/constants/run';
 
 const { words } = db;
 const SIZE = 6;
-
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 export function list(albumId) {
   albumId = Number(albumId);
