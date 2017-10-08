@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
+import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 
 const styles = {
   button: {
@@ -20,7 +21,6 @@ export default class RunAlbum extends Component {
   constructor(props) {
     super(props);
     this.handleToList = this.handleToList.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleToList() {
@@ -35,16 +35,8 @@ export default class RunAlbum extends Component {
     runActions.list(id);
   }
 
-  handleSelect() {
-    const { match, runActions } = this.props;
-    const { id } = match.params;
-    // albumsActions.get(id);
-    runActions.list(id);
-  }
-
   render() {
-    const { album, run } = this.props;
-    console.log(run);
+    const { album, run, match } = this.props;
     const name = (() => {
       if (album && album.record) {
         return album.record.name;
@@ -52,16 +44,7 @@ export default class RunAlbum extends Component {
     })();
 
     const listAnswers = run.answers.map((item, index) => {
-      const key = `${item.id}${index}`;
-      return (<RaisedButton
-        labelStyle={styles.button.title}
-        onClick={this.handleSelect}
-        label={item.originalWord}
-        style={styles.button}
-        fullWidth={true}
-        primary={true}
-        key={key}
-      />);
+      return (<RunVariableButton record={item} index={index} match={match} />);
     });
     const question = run.question || {originalWord: '', translateWord: ''};
 
