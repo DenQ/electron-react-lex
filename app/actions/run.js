@@ -13,20 +13,22 @@ export function list(albumId) {
       .where({ albumId })
       .toArray()
       .then((records) => {
+        const vector = Boolean(getRandomInt(0, 1));
         const questionIndex = getRandomInt(0, records.length - 1);
         const question = records[questionIndex];
         const answers = records
           .filter((item) => Number(item.id) !== Number(question.id))
           .sort(compareRandom)
           .slice(0, SIZE);
-        answers.push(question)
+        answers.push(question);
         for(let i=0;i<2*SIZE;i++) {
-          answers.sort(compareRandom)
+          answers.sort(compareRandom);
         }
         return dispatch({
           type: LIST,
           question,
-          answers
+          answers,
+          vector,
         });
       })
       .catch(error => console.error(error));

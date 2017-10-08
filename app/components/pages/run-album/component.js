@@ -55,7 +55,7 @@ export default class RunAlbum extends Component {
       />);
     });
     const question = run.question || {originalWord: '', translateWord: ''};
-    const title = question.translateWord;
+    const title = run.vector ? question.translateWord : question.originalWord;
 
     return (
       <div>

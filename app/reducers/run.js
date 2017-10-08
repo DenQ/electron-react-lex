@@ -3,13 +3,13 @@ import { LIST } from 'lex/constants/run';
 const initialState = {
   question: {},
   answers: [],
-  rightAnswer: {},
+  vector: false,
 }
 
 export default function(state = initialState, action) {
-  const { type, question, answers, rightAnswer} = action;
+  const { type, question, answers, vector } = action;
   if (type === LIST) {
-    return { question, answers, rightAnswer };
+    return { question, answers, vector };
   }
   return state;
 }

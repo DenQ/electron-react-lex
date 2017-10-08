@@ -27,12 +27,13 @@ export default class RunVariable extends Component {
   }
 
   render() {
-    const { index, record } = this.props;
+    const { index, record, run } = this.props;
+    const title = !run.vector ? record.translateWord : record.originalWord;
     const key = `${record.id}${index}`;
     return (<RaisedButton
       labelStyle={styles.button.title}
       onClick={this.handleSelect}
-      label={record.originalWord}
+      label={title}
       style={styles.button}
       fullWidth={true}
       primary={true}
