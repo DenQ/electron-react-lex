@@ -6,6 +6,7 @@ import counter from './counter';
 import urlManager from './url-manager';
 import album from './album';
 import word from './word';
+import run from './run';
 import exampleForm from './example-form';
 
 const rootReducer = combineReducers({
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   counter,
   album,
   word,
+  run,
   exampleForm,
   router,
 });
