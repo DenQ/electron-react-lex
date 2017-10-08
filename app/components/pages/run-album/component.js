@@ -12,6 +12,8 @@ const styles = {
     title: {
       fontSize: 16,
       fontWeight: 900,
+      color: 'white',
+      textTransform: 'uppercase',
     }
   }
 };
@@ -44,9 +46,16 @@ export default class RunAlbum extends Component {
     })();
 
     const listAnswers = run.answers.map((item, index) => {
-      return (<RunVariableButton record={item} index={index} match={match} />);
+      const key = `item-${item.id}${index}`;
+      return (<RunVariableButton
+        record={item}
+        index={index}
+        match={match}
+        key={key}
+      />);
     });
     const question = run.question || {originalWord: '', translateWord: ''};
+    const title = question.translateWord;
 
     return (
       <div>
@@ -66,11 +75,12 @@ export default class RunAlbum extends Component {
           <RaisedButton
             key="csdc"
             labelStyle={styles.button.title}
-            label={question.translateWord}
             style={styles.button}
             secondary={true}
             fullWidth={true}
-          />
+          >
+            <span style={styles.button.title}>{title}</span>
+          </RaisedButton>
           {listAnswers}
         </div>
       </div>
