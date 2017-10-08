@@ -13,17 +13,30 @@ const styles = {
   }
 };
 
+const initialState = {
+  disabled: false,
+}
+
 export default class RunVariable extends Component {
 
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
+    this.state = initialState;
   }
 
   handleSelect() {
-    const { match, runActions } = this.props;
-    const { id } = match.params;
-    runActions.list(id);
+    const { match, runActions, run, record } = this.props;
+    const questionId = Number(run.question.id);
+    const recordId = Number(record.id);
+    if (recordId === questionId) {
+      const { id } = match.params;
+      runActions.list(id);
+    } else {
+      this.setState({
+        disabled: true,
+      });
+    }
   }
 
   render() {
@@ -32,11 +45,12 @@ export default class RunVariable extends Component {
     const key = `${record.id}${index}`;
     return (<RaisedButton
       labelStyle={styles.button.title}
+      disabled={this.state.disabled}
       onClick={this.handleSelect}
-      label={title}
       style={styles.button}
       fullWidth={true}
       primary={true}
+      label={title}
       key={key}
     />);
 
