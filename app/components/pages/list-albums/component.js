@@ -37,6 +37,11 @@ class List extends Component {
     albumsActions.remove(item, this.getList.bind(this));
   }
 
+  componentWillMount() {
+    const { defaultAlbumActions } = this.props;
+    defaultAlbumActions.run();
+  }
+
   componentDidMount() {
     this.getList();
   }
