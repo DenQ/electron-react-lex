@@ -3,6 +3,7 @@ import { LIST } from 'lex/constants/album';
 import dump from 'lex/db/default-album';
 
 const ALBUM_ALRADY_EXISTING = 'album_alrady_existing'
+const albumName = 'Irregular verbs(big)';
 const { albums, words } = db;
 
 export function run() {
@@ -15,8 +16,8 @@ export function run() {
           return Promise.reject({code: ALBUM_ALRADY_EXISTING});
         } else {
           return albums.add({
-            name: 'default',
-            description: 'default',
+            name: albumName,
+            description: 'About 300 words',
             cretedDT: +new Date,
             default: 1,
           });
