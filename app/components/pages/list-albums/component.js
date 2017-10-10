@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppBar, IconButton, RaisedButton } from 'material-ui';
+import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import Styles from 'lex/styles/custom';
@@ -35,6 +35,11 @@ class List extends Component {
   handleRemoveAlbum(item) {
     const { albumsActions } = this.props;
     albumsActions.remove(item, this.getList.bind(this));
+  }
+
+  componentWillMount() {
+    const { defaultAlbumActions } = this.props;
+    defaultAlbumActions.run();
   }
 
   componentDidMount() {
