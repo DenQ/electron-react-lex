@@ -155,6 +155,9 @@ To package apps for the local platform:
 ```bash
 $ npm run package
 ```
+```
+$ npm run package -- --win
+```
 
 To package apps for all platforms:
 
@@ -193,7 +196,7 @@ See [electron-builder CLI Usage](https://github.com/electron-userland/electron-b
 
 ## How to add modules to the project
 
-You will need to add other modules to this boilerplate, depending on the requirements of your project. For example, you may want to add [node-postgres](https://github.com/brianc/node-postgres) to communicate with PostgreSQL database, or 
+You will need to add other modules to this boilerplate, depending on the requirements of your project. For example, you may want to add [node-postgres](https://github.com/brianc/node-postgres) to communicate with PostgreSQL database, or
 [material-ui](http://www.material-ui.com/) to reuse react UI components.
 
 ⚠️ Please read the following section before installing any dependencies ⚠️
