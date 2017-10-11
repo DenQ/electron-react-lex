@@ -16,13 +16,22 @@ import './app.global.scss';
 
 const store = configureStore();
 
+let thema = IndigoThema;
+
 ipcRenderer.on('go-to-counter', (event) => {
   store.dispatch(push('/counter'));
 });
 
-let thema = IndigoThema;
+ipcRenderer.on('change-theme', (event, options) => {
+  const { code } = options;
+  thema = require(`./themes/${code}`);
+  renderApp();
+  console.log(options);
+});
+
 
 function renderApp(flag) {
+  console.log(111, thema);
   let root;
   if (flag) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
