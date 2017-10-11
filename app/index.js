@@ -11,7 +11,7 @@ import { configureStore, history } from './store/configureStore';
 // import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
-import { setOption,getOption } from './actions/options';
+import { setOption, getOption, list as listOptions } from './actions/options';
 
 const store = configureStore();
 
@@ -46,6 +46,7 @@ function setOptionValue(doc) {
 }
 
 function renderApp(flag) {
+  listOptions()(store.dispatch);
   let root;
   if (flag) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require

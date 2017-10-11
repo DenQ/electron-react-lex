@@ -3,11 +3,17 @@ import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import Styles from 'lex/styles/custom';
-import { teal700 as bodyColor } from 'material-ui/styles/colors';
+import getTheme from 'lex/libs/get-theme';
 
 function decorateStyle() {
-  //get bodyColor from state
-  Styles.body.backgroundColor = bodyColor;
+  const { options } = this.props;
+  const filtered = options.records.filter(item => item.key === 'theme');
+  const codeTheme = filtered.length > 0 ? filtered[0].value : null;
+  if (codeTheme) {
+    const theme = getTheme(codeTheme);
+    Styles.body.backgroundColor = theme.palette.primary2Color
+
+  }
 }
 
 class List extends Component {
