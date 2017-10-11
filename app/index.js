@@ -11,8 +11,8 @@ import { configureStore, history } from './store/configureStore';
 // import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
 // import IndigoOrangeThema from './themes/dark-indigo-orange';
-
 import './app.global.scss';
+import { setOption } from './actions/options';
 
 const store = configureStore();
 
@@ -30,6 +30,11 @@ ipcRenderer.on('change-theme', (event, options) => {
 
 
 function renderApp(flag) {
+  const action = setOption({
+    key: 'test',
+    value: 'off'
+  });
+  action(store.dispatch);
   let root;
   if (flag) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
