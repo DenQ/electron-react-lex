@@ -1,11 +1,11 @@
 import React from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
-import { formValueSelector } from 'redux-form';
+// import { formValueSelector } from 'redux-form';
 import Form from 'lex/components/forms/add-album/component';
-import Styles from 'lex/styles/custom';
+import BaseComponent from 'lex/libs/base/component';
 
-export default class AddAlbum extends React.Component {
+export default class AddAlbum extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -34,22 +34,22 @@ export default class AddAlbum extends React.Component {
   }
 
   render() {
+    this.decorateStyle();
     const { forms } = this.props;
     let isValidForm = false;
     if ('addAlbum' in forms) {
       const stateForm = this.props.forms.addAlbum;
-      // const isValid = typeof(stateForm.syncErrors) === undefined;
       isValidForm = !('syncErrors' in stateForm);
 
     }
     return (
-      <div>
+      <div style={this.styles.body}>
         <AppBar
           title="Add album"
           iconElementLeft={
             <IconButton
-              style={Styles.iconButton.large}
-              iconStyle={Styles.iconButton.largeIcon}
+              style={this.styles.iconButton.large}
+              iconStyle={this.styles.iconButton.largeIcon}
               onClick={this.handleToList}
             >
               <NavigationClose />

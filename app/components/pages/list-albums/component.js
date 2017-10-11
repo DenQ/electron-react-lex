@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
-// import Styles from 'lex/styles/custom';
-// import getTheme from 'lex/libs/get-theme';
-//
-// function decorateStyle() {
-//   const { options } = this.props;
-//   const filtered = options.records.filter(item => item.key === 'theme');
-//   const codeTheme = filtered.length > 0 ? filtered[0].value : null;
-//   if (codeTheme) {
-//     const theme = getTheme(codeTheme);
-//     Styles.body.backgroundColor = theme.palette.primary2Color
-//
-//   }
-// }
-
 import BaseComponent from 'lex/libs/base/component';
 
 class List extends BaseComponent {
