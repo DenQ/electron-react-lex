@@ -2,21 +2,23 @@ import React, { Component } from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
-import Styles from 'lex/styles/custom';
-import getTheme from 'lex/libs/get-theme';
+// import Styles from 'lex/styles/custom';
+// import getTheme from 'lex/libs/get-theme';
+//
+// function decorateStyle() {
+//   const { options } = this.props;
+//   const filtered = options.records.filter(item => item.key === 'theme');
+//   const codeTheme = filtered.length > 0 ? filtered[0].value : null;
+//   if (codeTheme) {
+//     const theme = getTheme(codeTheme);
+//     Styles.body.backgroundColor = theme.palette.primary2Color
+//
+//   }
+// }
 
-function decorateStyle() {
-  const { options } = this.props;
-  const filtered = options.records.filter(item => item.key === 'theme');
-  const codeTheme = filtered.length > 0 ? filtered[0].value : null;
-  if (codeTheme) {
-    const theme = getTheme(codeTheme);
-    Styles.body.backgroundColor = theme.palette.primary2Color
+import BaseComponent from 'lex/libs/base/component';
 
-  }
-}
-
-class List extends Component {
+class List extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -59,7 +61,7 @@ class List extends Component {
   }
 
   render() {
-    decorateStyle.call(this);
+    this.decorateStyle();
     const { records } = this.props.album;
 
     const list = records.map((item) => {
@@ -76,13 +78,13 @@ class List extends Component {
 
 
     return (
-      <div style={Styles.body}>
+      <div style={this.styles.body}>
         <AppBar
           title="List albums"
           iconElementRight={
             <IconButton
-              style={Styles.iconButton.large}
-              iconStyle={Styles.iconButton.largeIcon}
+              style={this.styles.iconButton.large}
+              iconStyle={this.styles.iconButton.largeIcon}
               onClick={this.handleToAdd}
             >
               <AddCircle />

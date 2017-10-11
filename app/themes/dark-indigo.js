@@ -51,4 +51,7 @@ export default {
   //   borderColor: palette.borderColor,
   //   textColor: palette.primary1Color,
   // },
+  body:{
+    backgroundColor: palette.primary2Color,
+  }
 };

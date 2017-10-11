@@ -1,3 +1,4 @@
+import customStyles from 'lex/styles/custom';
 import darkIndigo from 'lex/themes/dark-indigo';
 import darkIndigoOrage from 'lex/themes/dark-indigo-orange';
 import teal from 'lex/themes/teal';
@@ -9,5 +10,5 @@ const map = {
 }
 
 export default function getTheme(name) {
-  return map[name];
+  return Object.assign({}, customStyles, map[name]);
 }

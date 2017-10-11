@@ -9,23 +9,28 @@ import {
 import { fade } from 'material-ui/utils/colorManipulator';
 // import spacing from '../spacing';
 
+const palette = {
+  primary1Color: indigo900,
+  primary2Color: indigo700,
+  primary3Color: indigo300,
+  accent1Color: orange700,
+  accent2Color: grey100,
+  accent3Color: grey500,
+  textColor: darkBlack,
+  alternateTextColor: white,
+  canvasColor: white,
+  borderColor: grey300,
+  disabledColor: fade(darkBlack, 0.3),
+  pickerHeaderColor: cyan500,
+  clockCircleColor: fade(darkBlack, 0.07),
+  shadowColor: fullBlack,
+};
+
 export default {
+  palette,
   // spacing: spacing,
   fontFamily: 'Roboto, sans-serif',
-  palette: {
-    primary1Color: indigo900,
-    primary2Color: indigo700,
-    primary3Color: indigo300,
-    accent1Color: orange700,
-    accent2Color: grey100,
-    accent3Color: grey500,
-    textColor: darkBlack,
-    alternateTextColor: white,
-    canvasColor: white,
-    borderColor: grey300,
-    disabledColor: fade(darkBlack, 0.3),
-    pickerHeaderColor: cyan500,
-    clockCircleColor: fade(darkBlack, 0.07),
-    shadowColor: fullBlack,
-  },
+  body:{
+    backgroundColor: palette.primary2Color,
+  }
 };
