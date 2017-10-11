@@ -6,5 +6,9 @@ export default [
   {
     label: 'Dark - Indigo Orange',
     code: 'dark-indigo-orange',
+  },
+  {
+    label: 'Teal',
+    code: 'teal',
   }
 ];

@@ -7,7 +7,7 @@ body {
   position: relative;
   color: white;
   height: 100vh;
-  background-color: $primary-color-dark;
+  // background-color: $primary-color-dark;
   overflow-y: hidden;
   font-family: Roboto;
   margin: 0px;
@@ -17,5 +17,5 @@ body {
 .page-container{
   padding: 10px;
   overflow-x: auto;
-  height: 700px;
+  height: 720px;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-filled';
-import { indigo300 } from 'material-ui/styles/colors';
+import { teal300 as playColor } from 'material-ui/styles/colors';
 
 const styles = {
   paper: {
@@ -73,7 +73,7 @@ export default class AlbumPaper extends Component {
           {record.name}
         </div>
 
-        <PlayIcon style={styles.icon.play} color={indigo300} />
+        <PlayIcon style={styles.icon.play} color={playColor} />
 
         <div style={styles.menu}>
           <RaisedButton

@@ -3,6 +3,12 @@ import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import Styles from 'lex/styles/custom';
+import { teal700 as bodyColor } from 'material-ui/styles/colors';
+
+function decorateStyle() {
+  //get bodyColor from state
+  Styles.body.backgroundColor = bodyColor;
+}
 
 class List extends Component {
 
@@ -47,6 +53,7 @@ class List extends Component {
   }
 
   render() {
+    decorateStyle.call(this);
     const { records } = this.props.album;
 
     const list = records.map((item) => {
@@ -63,7 +70,7 @@ class List extends Component {
 
 
     return (
-      <div>
+      <div style={Styles.body}>
         <AppBar
           title="List albums"
           iconElementRight={
