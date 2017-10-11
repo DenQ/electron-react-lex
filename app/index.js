@@ -10,9 +10,8 @@ import { configureStore, history } from './store/configureStore';
 // import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 // import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
-// import IndigoOrangeThema from './themes/dark-indigo-orange';
 import './app.global.scss';
-import { setOption } from './actions/options';
+import { setOption,getOption } from './actions/options';
 
 const store = configureStore();
 
@@ -25,16 +24,28 @@ ipcRenderer.on('go-to-counter', (event) => {
 ipcRenderer.on('change-theme', (event, options) => {
   const { code } = options;
   thema = require(`./themes/${code}`);
+  setOptionValue({
+    key: 'theme',
+    value: code,
+  });
   renderApp();
 });
 
+getOption('theme')().then((result) => {
+  if (result) {
+    const { key, value } = result;
+    const code = value;
+    thema = require(`./themes/${code}`);
+    renderApp();
+  }
+});
+
+function setOptionValue(doc) {
+  const action = setOption(doc);
+  return action(store.dispatch);
+}
 
 function renderApp(flag) {
-  const action = setOption({
-    key: 'test',
-    value: 'off'
-  });
-  action(store.dispatch);
   let root;
   if (flag) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
