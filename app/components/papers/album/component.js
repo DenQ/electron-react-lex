@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-filled';
-import { teal300 as playColor } from 'material-ui/styles/colors';
+import BaseComponent from 'lex/libs/base/component';
 
 const styles = {
   paper: {
@@ -30,7 +30,7 @@ const styles = {
   }
 };
 
-export default class AlbumPaper extends Component {
+export default class AlbumPaper extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -66,6 +66,7 @@ export default class AlbumPaper extends Component {
   }
 
   render() {
+    this.decorateStyle();
     const { record, handleToRun, handleToEdit, handleRemove } = this.props;
     return (
       <Paper style={styles.paper} zDepth={2} onClick={this.handlerOnClick}>
@@ -73,7 +74,7 @@ export default class AlbumPaper extends Component {
           {record.name}
         </div>
 
-        <PlayIcon style={styles.icon.play} color={playColor} />
+        <PlayIcon style={styles.icon.play} color={this.styles.palette.primary3Color} />
 
         <div style={styles.menu}>
           <RaisedButton
