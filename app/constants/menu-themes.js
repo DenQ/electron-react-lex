@@ -11,4 +11,8 @@ export default [
     label: 'Brown',
     code: 'brown',
   },
+  {
+    label: 'Bblue',
+    code: 'blue',
+  },
 ];
