@@ -168,17 +168,6 @@ export default class MenuBuilder {
       ]
     },
     {
-      label: 'Design',
-      submenu: [
-        {
-          label: 'Dark - indigo',
-          click: () => {
-            this.mainWindow.webContents.send('change-theme');
-          }
-        },
-      ],
-    },
-    {
       label: 'Help',
       submenu: [{
         label: 'Learn More',
