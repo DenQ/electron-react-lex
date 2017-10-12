@@ -19,4 +19,8 @@ export default [
     label: 'Deep Purple',
     code: 'deep-purple',
   },
+  {
+    label: 'Grey',
+    code: 'grey',
+  },
 ];
