@@ -3,12 +3,14 @@ import darkIndigo from 'lex/themes/dark-indigo';
 import teal from 'lex/themes/teal';
 import brown from 'lex/themes/brown';
 import blue from 'lex/themes/blue';
+import deepPurple from 'lex/themes/deep-purple';
 
 const map = {
   'dark-indigo': darkIndigo,
   'teal': teal,
   'brown': brown,
   'blue': blue,
+  'deep-purple': deepPurple,
 }
 
 export default function getTheme(name) {

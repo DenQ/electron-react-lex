@@ -12,7 +12,11 @@ export default [
     code: 'brown',
   },
   {
-    label: 'Bblue',
+    label: 'Blue',
     code: 'blue',
+  },
+  {
+    label: 'Deep Purple',
+    code: 'deep-purple',
   },
 ];
