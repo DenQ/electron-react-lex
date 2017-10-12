@@ -6,6 +6,8 @@ import IconSave from 'material-ui/svg-icons/navigation/check';
 import IconRemove from 'material-ui/svg-icons/content/remove-circle';
 import { connect } from 'react-redux';
 import { pullData } from 'lex/actions/form-add-word';
+import BaseComponent from 'lex/libs/base/component';
+import BaseContainer from 'lex/libs/container';
 
 const styles = {
   field: {
@@ -25,7 +27,7 @@ const validate = values => {
   return errors;
 };
 
-class AddWord extends React.Component {
+class AddWord extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -59,6 +61,7 @@ class AddWord extends React.Component {
   }
 
   render() {
+    this.decorateStyle();
     const { handleSubmit, invalid } = this.props;
     return (
       <form onSubmit={handleSubmit}>
@@ -105,4 +108,4 @@ AddWord = connect(null, {
   load: pullData
 })(AddWord);
 
-export default AddWord;
+export default BaseContainer(AddWord);

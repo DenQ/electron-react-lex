@@ -9,7 +9,6 @@ function decorateStyle() {
   if (codeTheme) {
     const theme = getTheme(codeTheme);
     this.styles = theme;
-
   }
 }
 
