@@ -10,5 +10,9 @@ export default [
   {
     label: 'Teal',
     code: 'teal',
-  }
+  },
+  {
+    label: 'Brown',
+    code: 'brown',
+  },
 ];

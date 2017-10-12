@@ -64,11 +64,6 @@ function renderApp(flag) {
   );
 }
 
-// setTimeout(()=>{
-//   thema = IndigoOrangeThema;
-//   renderApp();
-// }, 1500);
-
 renderApp();
 
 if (module.hot) {
