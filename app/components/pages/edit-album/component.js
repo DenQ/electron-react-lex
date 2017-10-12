@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
+import BaseComponent from 'lex/libs/base/component';
 
 const nameMethods = [
   'handleToList', 'handleToRun', 'handleSave',
   'handleRemove', 'callbackList'
 ];
 
-export default class EditAlbum extends Component {
+export default class EditAlbum extends BaseComponent {
   constructor(props) {
     super(props);
     nameMethods.forEach((methodName) => {
@@ -71,6 +72,7 @@ export default class EditAlbum extends Component {
   }
 
   render() {
+    this.decorateStyle();
     const { album, word, match } = this.props;
     const { id } = match.params;
     const words = word.records;
@@ -94,7 +96,7 @@ export default class EditAlbum extends Component {
     });
 
     return (
-      <div>
+      <div style={this.styles.body}>
         <AppBar
           title={'Edit album' + ' - ' + name}
           iconElementLeft={

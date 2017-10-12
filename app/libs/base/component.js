@@ -8,12 +8,6 @@ function decorateStyle() {
   const codeTheme = filtered.length > 0 ? filtered[0].value : null;
   if (codeTheme) {
     const theme = getTheme(codeTheme);
-    // this.styles.body.backgroundColor = theme.palette.primary2Color
-    // this.styles = Object.assign({}, this.styles, {
-    //   body: {
-    //     backgroundColor: theme.palette.primary2Color,
-    //   }
-    // })
     this.styles = theme;
 
   }
