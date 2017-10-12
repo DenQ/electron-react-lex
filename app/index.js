@@ -10,19 +10,43 @@ import { configureStore, history } from './store/configureStore';
 // import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 // import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
-// import IndigoOrangeThema from './themes/dark-indigo-orange';
-
 import './app.global.scss';
+import { setOption, getOption, list as listOptions } from './actions/options';
 
 const store = configureStore();
+
+let thema = IndigoThema;
 
 ipcRenderer.on('go-to-counter', (event) => {
   store.dispatch(push('/counter'));
 });
 
-let thema = IndigoThema;
+ipcRenderer.on('change-theme', (event, options) => {
+  const { code } = options;
+  thema = require(`./themes/${code}`);
+  setOptionValue({
+    key: 'theme',
+    value: code,
+  });
+  renderApp();
+});
+
+getOption('theme')().then((result) => {
+  if (result) {
+    const { key, value } = result;
+    const code = value;
+    thema = require(`./themes/${code}`);
+    renderApp();
+  }
+});
+
+function setOptionValue(doc) {
+  const action = setOption(doc);
+  return action(store.dispatch);
+}
 
 function renderApp(flag) {
+  listOptions()(store.dispatch);
   let root;
   if (flag) {
     const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
@@ -39,11 +63,6 @@ function renderApp(flag) {
     document.getElementById('root')
   );
 }
-
-// setTimeout(()=>{
-//   thema = IndigoOrangeThema;
-//   renderApp();
-// }, 1500);
 
 renderApp();
 

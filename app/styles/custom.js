@@ -1,4 +1,7 @@
 export default {
+  body: {
+    
+  },
   iconButton: {
     largeIcon: {
       width: 36,

@@ -8,6 +8,7 @@ import album from './album';
 import word from './word';
 import run from './run';
 import exampleForm from './example-form';
+import options from './options';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   run,
   exampleForm,
   router,
+  options,
 });
 
 export default rootReducer;

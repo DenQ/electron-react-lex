@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
-import Styles from 'lex/styles/custom';
+import BaseComponent from 'lex/libs/base/component';
 
-class List extends Component {
+class List extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -47,6 +47,7 @@ class List extends Component {
   }
 
   render() {
+    this.decorateStyle();
     const { records } = this.props.album;
 
     const list = records.map((item) => {
@@ -63,13 +64,13 @@ class List extends Component {
 
 
     return (
-      <div>
+      <div style={this.styles.body}>
         <AppBar
           title="List albums"
           iconElementRight={
             <IconButton
-              style={Styles.iconButton.large}
-              iconStyle={Styles.iconButton.largeIcon}
+              style={this.styles.iconButton.large}
+              iconStyle={this.styles.iconButton.largeIcon}
               onClick={this.handleToAdd}
             >
               <AddCircle />

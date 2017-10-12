@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import RunVariableButton from 'lex/containers/buttons/run-variable/container';
+import BaseComponent from 'lex/libs/base/component';
 
 const styles = {
   button: {
@@ -18,7 +19,7 @@ const styles = {
   }
 };
 
-export default class RunAlbum extends Component {
+export default class RunAlbum extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -38,6 +39,7 @@ export default class RunAlbum extends Component {
   }
 
   render() {
+    this.decorateStyle();
     const { album, run, match } = this.props;
     const name = (() => {
       if (album && album.record) {
@@ -58,7 +60,7 @@ export default class RunAlbum extends Component {
     const title = run.vector ? question.translateWord : question.originalWord;
 
     return (
-      <div>
+      <div style={this.styles.body}>
         <AppBar
           title={'Run' + ' - ' + name}
           iconElementLeft={

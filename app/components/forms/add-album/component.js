@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
+import BaseComponent from 'lex/libs/base/component';
+import BaseContainer from 'lex/libs/container';
 
 const validate = values => {
   const errors = {};
@@ -10,9 +12,10 @@ const validate = values => {
   return errors;
 };
 
-class AddAlbum extends React.Component {
+class AddAlbum extends BaseComponent {
 
   render() {
+    this.decorateStyle();
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={handleSubmit}>
@@ -39,7 +42,9 @@ class AddAlbum extends React.Component {
 
 }
 
-export default reduxForm({
+AddAlbum = reduxForm({
   form: 'addAlbum',
   validate,
 })(AddAlbum);
+
+export default BaseContainer(AddAlbum);

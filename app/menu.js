@@ -1,5 +1,6 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
+import menuThemes from './constants/menu-themes';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -151,32 +152,22 @@ export default class MenuBuilder {
     },
     {
       label: '&View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
-        label: '&Reload',
-        accelerator: 'Ctrl+R',
-        click: () => {
-          this.mainWindow.webContents.reload();
-        }
-      }, {
-        label: 'Toggle &Full Screen',
-        accelerator: 'F11',
-        click: () => {
-          this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-        }
-      }, {
-        label: 'Toggle &Developer Tools',
-        accelerator: 'Alt+Ctrl+I',
-        click: () => {
-          this.mainWindow.toggleDevTools();
-        }
-      }] : [{
-        label: 'Toggle &Full Screen',
-        accelerator: 'F11',
-        click: () => {
-          this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
-        }
-      }]
-    }, {
+      submenu: [
+        {
+          label: 'themes',
+          submenu: menuThemes.map((item) => {
+            const { label, code } = item;
+            return {
+              label,
+              click: () => {
+                this.mainWindow.webContents.send('change-theme', { code });
+              }
+            }
+          })
+        },
+      ]
+    },
+    {
       label: 'Help',
       submenu: [{
         label: 'Learn More',

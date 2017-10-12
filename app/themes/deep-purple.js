@@ -1,11 +1,11 @@
 import {
-  indigo900 as primary1Color,
-  indigo700 as primary2Color,
-  indigo300 as primary3Color,
+  deepPurple900 as primary1Color,
+  deepPurple700 as primary2Color,
+  deepPurple300 as primary3Color,
 
-  pinkA200 as accent1Color,
-  pinkA100 as accent2Color,
-  pinkA400 as accent3Color,
+  deepOrange400 as accent1Color,
+  deepOrange200 as accent2Color,
+  deepOrange300 as accent3Color,
 
   red800 as errorColor,
   grey300,

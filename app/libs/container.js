@@ -7,6 +7,7 @@ import * as wordsActions from 'lex/actions/words';
 import * as runActions from 'lex/actions/run';
 import * as selfFormActions from 'lex/actions/self-form';
 import * as defaultAlbumActions from 'lex/actions/default-album';
+import * as optionsActions from 'lex/actions/options';
 
 function mapStateToProps(state) {
   return {
@@ -15,6 +16,7 @@ function mapStateToProps(state) {
     word: state.word,
     run: state.run,
     forms: state.form,
+    options: state.options,
   };
 }
 
@@ -26,6 +28,7 @@ function mapDispatchToProps(dispatch) {
     runActions: bindActionCreators(runActions, dispatch),
     selfFormActions: bindActionCreators(selfFormActions, dispatch),
     defaultAlbumActions: bindActionCreators(defaultAlbumActions, dispatch),
+    optionsActions: bindActionCreators(optionsActions, dispatch),
   };
 }
 
