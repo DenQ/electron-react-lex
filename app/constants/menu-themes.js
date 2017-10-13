@@ -27,4 +27,8 @@ export default [
     label: 'Black',
     code: 'black',
   },
+  {
+    label: 'White',
+    code: 'white',
+  },
 ];
