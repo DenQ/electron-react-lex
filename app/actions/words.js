@@ -1,5 +1,6 @@
 import db from 'lex/db/lex.dexie';
-import { LIST } from 'lex/constants/word';
+import { LIST, CLEAR_STATE } from 'lex/constants/word';
+import { spinnerContainer } from 'lex/constants/spinner';
 
 const { words } = db;
 
@@ -31,12 +32,28 @@ export function remove(id, callback) {
 export function list(albumId) {
   albumId = Number(albumId);
   return (dispatch) => {
+    dispatch({
+      type: spinnerContainer,
+      show: true,
+    });
     return words
       .where({ albumId })
       .toArray()
       .then((records) => {
+        dispatch({
+          type: spinnerContainer,
+          show: false,
+        });
         return dispatch({ type: LIST, records });
       })
       .catch(error => console.error(error));
+  }
+}
+
+export function clearState() {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_STATE,
+    });
   }
 }

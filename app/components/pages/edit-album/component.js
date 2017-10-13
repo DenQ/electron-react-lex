@@ -4,6 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
 import BaseComponent from 'lex/libs/base/component';
+import Spinner from 'react-spinner-material';
 
 const nameMethods = [
   'handleToList', 'handleToRun', 'handleSave',
@@ -71,9 +72,15 @@ export default class EditAlbum extends BaseComponent {
     this.getListWords(id);
   }
 
+  componentWillUnmount() {
+    const { wordsActions } = this.props;
+    wordsActions.clearState();
+  }
+
   render() {
     this.decorateStyle();
-    const { album, word, match } = this.props;
+    const { album, word, match, spinners } = this.props;
+    const { pageContainer } = spinners;
     const { id } = match.params;
     const words = word.records;
     const name = (() => {
@@ -116,6 +123,12 @@ export default class EditAlbum extends BaseComponent {
             handleSave={this.handleSave}
           />
           {listForm}
+          <Spinner
+            size={200}
+            spinnerColor={"#fff"}
+            spinnerWidth={15}
+            visible={pageContainer.show}
+          />
         </div>
       </div>
     );
