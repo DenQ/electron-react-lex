@@ -9,6 +9,7 @@ import word from './word';
 import run from './run';
 import exampleForm from './example-form';
 import options from './options';
+import spinners from './spinners';
 
 const rootReducer = combineReducers({
   form: formReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   exampleForm,
   router,
   options,
+  spinners,
 });
 
 export default rootReducer;

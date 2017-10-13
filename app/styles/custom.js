@@ -1,6 +1,6 @@
 export default {
   body: {
-    
+
   },
   iconButton: {
     largeIcon: {
@@ -10,5 +10,5 @@ export default {
     large: {
       padding: 1,
     },
-  }
+  },
 };
