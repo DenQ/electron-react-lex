@@ -1,7 +1,8 @@
 import db from 'lex/db/lex.dexie';
 import compareRandom from 'lex/utils/compare-random';
 import getRandomInt from 'lex/utils/get-random';
-import { LIST } from 'lex/constants/run';
+import { LIST, CLEAR_STATE } from 'lex/constants/run';
+import { spinnerContainer } from 'lex/constants/spinner';
 
 const { words } = db;
 const SIZE = 6;
@@ -10,6 +11,10 @@ const ALBUM_IS_EMPTY = true;
 export function list(albumId) {
   albumId = Number(albumId);
   return (dispatch) => {
+    dispatch({
+      type: spinnerContainer,
+      show: true,
+    });
     return words
       .where({ albumId })
       .toArray()
@@ -28,17 +33,29 @@ export function list(albumId) {
         for(let i=0; i<2*SIZE; i++) {
           answers.sort(compareRandom);
         }
-        return dispatch({
-          type: LIST,
-          question,
-          answers,
-          vector,
-        });
+          dispatch({
+            type: spinnerContainer,
+            show: false,
+          });
+          return dispatch({
+            type: LIST,
+            question,
+            answers,
+            vector,
+          });
       })
       .catch((error) => {
         if (error.code !== ALBUM_IS_EMPTY) {
           console.error(error)
         }
       });
+  }
+}
+
+export function clearState() {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_STATE,
+    });
   }
 }
