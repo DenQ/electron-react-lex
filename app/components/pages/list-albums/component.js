@@ -3,6 +3,7 @@ import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import BaseComponent from 'lex/libs/base/component';
+import Spinner from 'react-spinner-material';
 
 class List extends BaseComponent {
 
@@ -48,7 +49,9 @@ class List extends BaseComponent {
 
   render() {
     this.decorateStyle();
-    const { records } = this.props.album;
+    const { album, spinners } = this.props;
+    const { records } = album;
+    const { pageContainer } = spinners;
 
     const list = records.map((item) => {
       return (
@@ -61,7 +64,6 @@ class List extends BaseComponent {
         />
       );
     });
-
 
     return (
       <div style={this.styles.body}>
@@ -80,6 +82,12 @@ class List extends BaseComponent {
 
         <div className="page-container">
           {list}
+          <Spinner
+            size={200}
+            spinnerColor={"#fff"}
+            spinnerWidth={15}
+            visible={pageContainer.show}
+          />
         </div>
 
       </div>

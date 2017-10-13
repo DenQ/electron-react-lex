@@ -1,5 +1,6 @@
 import db from 'lex/db/lex.dexie';
 import { LIST, GET } from 'lex/constants/album';
+import { spinnerContainer } from 'lex/constants/spinner';
 
 const { albums } = db;
 
@@ -14,8 +15,16 @@ export function insert(docs, callback) {
 
 export function list() {
   return (dispatch) => {
+    dispatch({
+      type: spinnerContainer,
+      show: true,
+    });
     return albums.toArray()
       .then((records) => {
+        dispatch({
+          type: spinnerContainer,
+          show: false,
+        });
         return dispatch({ type: LIST, records });
       });
   }

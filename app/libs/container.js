@@ -8,6 +8,7 @@ import * as runActions from 'lex/actions/run';
 import * as selfFormActions from 'lex/actions/self-form';
 import * as defaultAlbumActions from 'lex/actions/default-album';
 import * as optionsActions from 'lex/actions/options';
+import * as spinnerActions from 'lex/actions/spinner';
 
 function mapStateToProps(state) {
   return {
@@ -17,6 +18,7 @@ function mapStateToProps(state) {
     run: state.run,
     forms: state.form,
     options: state.options,
+    spinners: state.spinners,
   };
 }
 
@@ -29,6 +31,7 @@ function mapDispatchToProps(dispatch) {
     selfFormActions: bindActionCreators(selfFormActions, dispatch),
     defaultAlbumActions: bindActionCreators(defaultAlbumActions, dispatch),
     optionsActions: bindActionCreators(optionsActions, dispatch),
+    spinnerActions: bindActionCreators(spinnerActions, dispatch),
   };
 }
 

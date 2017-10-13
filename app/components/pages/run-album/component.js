@@ -4,6 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
+import Spinner from 'react-spinner-material';
 
 const styles = {
   button: {
@@ -38,9 +39,15 @@ export default class RunAlbum extends BaseComponent {
     runActions.list(id);
   }
 
+  componentWillUnmount() {
+    const { runActions } = this.props;
+    runActions.clearState();
+  }
+
   render() {
     this.decorateStyle();
-    const { album, run, match } = this.props;
+    const { album, run, match, spinners } = this.props;
+    const { pageContainer } = spinners;
     const name = (() => {
       if (album && album.record) {
         return album.record.name;
@@ -84,6 +91,12 @@ export default class RunAlbum extends BaseComponent {
             <span style={styles.button.title}>{title}</span>
           </RaisedButton>
           {listAnswers}
+          <Spinner
+            size={200}
+            spinnerColor={"#fff"}
+            spinnerWidth={15}
+            visible={pageContainer.show}
+          />
         </div>
       </div>
     );
