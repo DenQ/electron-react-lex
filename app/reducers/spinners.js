@@ -1,7 +1,7 @@
 import { spinnerContainer } from 'lex/constants/spinner';
 
 const initialState = {
-  pageContainer: false,
+  pageContainer: { show: false },
 }
 
 export default function(state = initialState, action) {

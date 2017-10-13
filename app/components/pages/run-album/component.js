@@ -4,7 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
-import Spinner from 'react-spinner-material';
+import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 
 const styles = {
   button: {
@@ -91,12 +91,7 @@ export default class RunAlbum extends BaseComponent {
             <span style={styles.button.title}>{title}</span>
           </RaisedButton>
           {listAnswers}
-          <Spinner
-            size={200}
-            spinnerColor={"#fff"}
-            spinnerWidth={15}
-            visible={pageContainer.show}
-          />
+          <MaterialSpinner show={pageContainer.show} />
         </div>
       </div>
     );

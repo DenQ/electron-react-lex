@@ -3,7 +3,7 @@ import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import BaseComponent from 'lex/libs/base/component';
-import Spinner from 'react-spinner-material';
+import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 
 class List extends BaseComponent {
 
@@ -82,12 +82,7 @@ class List extends BaseComponent {
 
         <div className="page-container">
           {list}
-          <Spinner
-            size={200}
-            spinnerColor={"#fff"}
-            spinnerWidth={15}
-            visible={pageContainer.show}
-          />
+          <MaterialSpinner show={pageContainer.show} />
         </div>
 
       </div>

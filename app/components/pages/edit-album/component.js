@@ -4,7 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
 import BaseComponent from 'lex/libs/base/component';
-import Spinner from 'react-spinner-material';
+import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 
 const nameMethods = [
   'handleToList', 'handleToRun', 'handleSave',
@@ -123,12 +123,7 @@ export default class EditAlbum extends BaseComponent {
             handleSave={this.handleSave}
           />
           {listForm}
-          <Spinner
-            size={200}
-            spinnerColor={"#fff"}
-            spinnerWidth={15}
-            visible={pageContainer.show}
-          />
+          <MaterialSpinner show={pageContainer.show} />
         </div>
       </div>
     );
