@@ -1,6 +1,7 @@
 import db from 'lex/db/lex.dexie';
 import { LIST } from 'lex/constants/options';
 
+const DEFAULT_THEME = 'dark-indigo';
 const { options } = db;
 
 export function setOption(doc) {
@@ -31,6 +32,12 @@ export function list() {
     return options
       .toArray()
       .then((records) => {
+        if (records.length === 0) {
+          records = [{
+            key: 'theme',
+            value: DEFAULT_THEME,
+          }];
+        }
         dispatch({
           type: LIST,
           records,
