@@ -9,12 +9,12 @@ import black from 'lex/themes/black';
 
 const map = {
   'dark-indigo': darkIndigo,
-  'teal': teal,
-  'brown': brown,
-  'blue': blue,
   'deep-purple': deepPurple,
-  'grey': grey,
-  'black': black,
+  teal,
+  brown,
+  blue,
+  grey,
+  black,
 }
 
 export default function getTheme(name) {

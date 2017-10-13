@@ -46,22 +46,27 @@ function setOptionValue(doc) {
 }
 
 function renderApp(flag) {
-  listOptions()(store.dispatch);
-  let root;
-  if (flag) {
-    const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
-    root = <NextRoot store={store} history={history} />;
-  } else {
-    root = (<Root store={store} history={history} />);
-  }
-  render(
-    <AppContainer>
-      <MuiThemeProvider muiTheme={getMuiTheme(thema)}>
+  listOptions()(store.dispatch)
+    .then(() => {
+      let root;
+      if (flag) {
+        const NextRoot = require('./containers/Root'); // eslint-disable-line global-require
+        root = <NextRoot store={store} history={history} />;
+      } else {
+        root = (<Root store={store} history={history} />);
+      }
+      render(
+        <AppContainer>
+        <MuiThemeProvider muiTheme={getMuiTheme(thema)}>
         {root}
-      </MuiThemeProvider>
-    </AppContainer>,
-    document.getElementById('root')
-  );
+        </MuiThemeProvider>
+        </AppContainer>,
+        document.getElementById('root')
+      );
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 renderApp();
