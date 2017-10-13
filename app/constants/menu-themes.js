@@ -23,4 +23,8 @@ export default [
     label: 'Grey',
     code: 'grey',
   },
+  {
+    label: 'Black',
+    code: 'black',
+  },
 ];

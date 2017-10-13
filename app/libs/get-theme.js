@@ -5,6 +5,7 @@ import brown from 'lex/themes/brown';
 import blue from 'lex/themes/blue';
 import deepPurple from 'lex/themes/deep-purple';
 import grey from 'lex/themes/grey';
+import black from 'lex/themes/black';
 
 const map = {
   'dark-indigo': darkIndigo,
@@ -13,6 +14,7 @@ const map = {
   'blue': blue,
   'deep-purple': deepPurple,
   'grey': grey,
+  'black': black,
 }
 
 export default function getTheme(name) {
