@@ -47,6 +47,11 @@ export function list(albumId) {
       .catch((error) => {
         if (error.code !== ALBUM_IS_EMPTY) {
           console.error(error)
+        } else {
+          dispatch({
+            type: spinnerContainer,
+            show: false,
+          });
         }
       });
   }
