@@ -12,6 +12,9 @@ export default {
     edit: {
       title: 'Edit album - %{name}'
     },
+    run: {
+      title: 'Testing album - %{name}'
+    },
   },
   components: {
     forms: {

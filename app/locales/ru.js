@@ -10,7 +10,10 @@ export default {
       }
     },
     edit: {
-      title: 'Редактирование альбома - %{name}'
+      title: 'Редактирование - %{name}'
+    },
+    run: {
+      title: 'Тестирование - %{name}'
     },
   },
   components: {
