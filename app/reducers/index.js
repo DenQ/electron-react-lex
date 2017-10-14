@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
+import {
+  loadTranslations,
+  setLocale,
+  syncTranslationWithStore,
+  i18nReducer
+} from 'react-redux-i18n';
 
 import counter from './counter';
 import urlManager from './url-manager';
@@ -12,6 +18,7 @@ import options from './options';
 import spinners from './spinners';
 
 const rootReducer = combineReducers({
+  i18n: i18nReducer,
   form: formReducer,
   urlManager,
   counter,
