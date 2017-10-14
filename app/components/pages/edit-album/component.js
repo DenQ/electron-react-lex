@@ -5,6 +5,7 @@ import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
+import { I18n } from 'react-redux-i18n';
 
 const nameMethods = [
   'handleToList', 'handleToRun', 'handleSave',
@@ -105,7 +106,7 @@ export default class EditAlbum extends BaseComponent {
     return (
       <div style={this.styles.body}>
         <AppBar
-          title={'Edit album' + ' - ' + name}
+          title={I18n.t('pages.edit.title', { name })}
           iconElementLeft={
             <IconButton
               style={Styles.iconButton.large}

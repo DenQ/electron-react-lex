@@ -9,6 +9,9 @@ export default {
         saveAndToEdit: 'Сохранить и редактировать'
       }
     },
+    edit: {
+      title: 'Редактирование альбома - %{name}'
+    },
   },
   components: {
     forms: {
@@ -17,6 +20,12 @@ export default {
         placeholders: {
           albumName: 'Название Альбома',
           albumDescription: 'Описание Альбома',
+        }
+      },
+      addWord: {
+        placeholders: {
+          word: 'Слово',
+          translate: 'Перевод',
         }
       },
     },

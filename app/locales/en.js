@@ -9,6 +9,9 @@ export default {
         saveAndToEdit: 'Save & to edit'
       }
     },
+    edit: {
+      title: 'Edit album - %{name}'
+    },
   },
   components: {
     forms: {
@@ -17,6 +20,12 @@ export default {
         placeholders: {
           albumName: 'Album Name',
           albumDescription: 'Album Description',
+        }
+      },
+      addWord: {
+        placeholders: {
+          word: 'Word',
+          translate: 'Translate',
         }
       },
     },
