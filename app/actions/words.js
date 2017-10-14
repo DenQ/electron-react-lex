@@ -2,6 +2,7 @@ import db from 'lex/db/lex.dexie';
 import { LIST, CLEAR_STATE } from 'lex/constants/word';
 import { spinnerContainer } from 'lex/constants/spinner';
 import { I18n } from 'react-redux-i18n';
+import notification from 'lex/utils/notificate';
 
 const { words } = db;
 
@@ -26,11 +27,7 @@ export function remove(id, callback) {
   return (dispatch) => {
     words.delete(id)
       .then(() => callback(dispatch, { id }))
-      .then(() => {
-        return new Notification('LEX', {
-          body: I18n.t('notifications.removed.word'),
-        });
-      })
+      .then(() => notification(I18n.t('notifications.removed.word')))
       .catch(error => console.error(error));
   };
 }

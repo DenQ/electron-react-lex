@@ -5,14 +5,13 @@ import { ipcRenderer } from 'electron';
 import { push } from 'react-router-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { I18n, setLocale } from 'react-redux-i18n';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
-// import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-// import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
 import { setOption, getOption, list as listOptions } from './actions/options';
-import { I18n, setLocale } from 'react-redux-i18n';
+import notification from 'lex/utils/notificate';
 
 const store = configureStore();
 
@@ -30,9 +29,7 @@ ipcRenderer.on('change-theme', (event, options) => {
     value: code,
   });
   renderApp();
-  new Notification('LEX', {
-    body: I18n.t('notifications.theme.change'),
-  });
+  notification(I18n.t('notifications.theme.change'));
 });
 
 ipcRenderer.on('change-locate', (event, options) => {
@@ -42,9 +39,7 @@ ipcRenderer.on('change-locate', (event, options) => {
     value: code,
   }).then(() => {
     renderApp();
-    new Notification('LEX', {
-      body: I18n.t('notifications.locate.change'),
-    });
+    notification(I18n.t('notifications.locate.change'));
   });
 });
 
@@ -88,9 +83,7 @@ function renderApp(flag) {
       );
     })
     .catch((error) => {
-      new Notification('LEX', {
-        body: `Error: ${error}`,
-      });
+      notification(error);
       console.log(error);
     });
 }
