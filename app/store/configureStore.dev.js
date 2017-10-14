@@ -13,7 +13,7 @@ import rootReducer from '../reducers';
 import * as counterActions from '../actions/counter';
 import * as urlManagerActions from '../actions/url-manager';
 import type { counterStateType } from '../reducers/counter';
-import translations from '../translations';
+import locales from '../locales/index';
 
 const history = createHashHistory();
 
@@ -59,8 +59,8 @@ const configureStore = (initialState?: counterStateType) => {
   // Create Store
   const store = createStore(rootReducer, initialState, enhancer);
   syncTranslationWithStore(store);
-  store.dispatch(loadTranslations(translations));
-  store.dispatch(setLocale('en'));
+  store.dispatch(loadTranslations(locales));
+  store.dispatch(setLocale('ru'));
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>
