@@ -5,16 +5,13 @@ import { ipcRenderer } from 'electron';
 import { push } from 'react-router-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { I18n, setLocale } from 'react-redux-i18n';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
-// import DarkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-// import LightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
 import { setOption, getOption, list as listOptions } from './actions/options';
-import {
-  setLocale,
-} from 'react-redux-i18n';
+import notification from 'lex/utils/notificate';
 
 const store = configureStore();
 
@@ -32,6 +29,7 @@ ipcRenderer.on('change-theme', (event, options) => {
     value: code,
   });
   renderApp();
+  notification(I18n.t('notifications.theme.change'));
 });
 
 ipcRenderer.on('change-locate', (event, options) => {
@@ -41,6 +39,7 @@ ipcRenderer.on('change-locate', (event, options) => {
     value: code,
   }).then(() => {
     renderApp();
+    notification(I18n.t('notifications.locate.change'));
   });
 });
 
@@ -84,6 +83,7 @@ function renderApp(flag) {
       );
     })
     .catch((error) => {
+      notification(error);
       console.log(error);
     });
 }

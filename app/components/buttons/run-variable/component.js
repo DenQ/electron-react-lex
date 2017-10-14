@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { RaisedButton } from 'material-ui';
+// import { I18n, setLocale } from 'react-redux-i18n';
+// import notification from 'lex/utils/notificate';
 
 const styles = {
   button: {

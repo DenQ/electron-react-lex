@@ -40,5 +40,18 @@ export default {
         remove: 'Удалить',
       }
     }
-  }
+  },
+  notifications: {
+    removed: {
+      album: 'Альбом был удален!',
+      word: 'Слово было удалено!',
+    },
+    locate: {
+      change: 'Локализация была изменена!'
+    },
+    theme: {
+      change: 'Тема оформления была изменена!'
+    },
+  },
+
 };
