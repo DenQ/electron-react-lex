@@ -12,6 +12,9 @@ import { configureStore, history } from './store/configureStore';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
 import { setOption, getOption, list as listOptions } from './actions/options';
+import {
+  setLocale,
+} from 'react-redux-i18n';
 
 const store = configureStore();
 
@@ -31,6 +34,16 @@ ipcRenderer.on('change-theme', (event, options) => {
   renderApp();
 });
 
+ipcRenderer.on('change-locate', (event, options) => {
+  const { code } = options;
+  setOptionValue({
+    key: 'locate',
+    value: code,
+  }).then(() => {
+    renderApp();
+  });
+});
+
 getOption('theme')().then((result) => {
   if (result) {
     const { key, value } = result;
@@ -47,6 +60,12 @@ function setOptionValue(doc) {
 
 function renderApp(flag) {
   listOptions()(store.dispatch)
+    .then((results) => {
+      const locate = results.filter((item) => item.key === 'locate');
+      const code = locate.length > 0 ? locate[0].value : 'en';
+      store.dispatch(setLocale(code));
+      return results;
+    })
     .then(() => {
       let root;
       if (flag) {
