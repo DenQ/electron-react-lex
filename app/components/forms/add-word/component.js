@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { pullData } from 'lex/actions/form-add-word';
 import BaseComponent from 'lex/libs/base/component';
 import BaseContainer from 'lex/libs/container';
+import { I18n } from 'react-redux-i18n';
 
 const styles = {
   field: {
@@ -67,13 +68,13 @@ class AddWord extends BaseComponent {
       <form onSubmit={handleSubmit}>
         <div>
           <Field
-            placeholder="Word"
+            placeholder={I18n.t('components.forms.addWord.placeholders.word')}
             component={TextField}
             name="word"
             style={styles.field}
           />
           <Field
-            placeholder="Translate"
+            placeholder={I18n.t('components.forms.addWord.placeholders.translate')}
             component={TextField}
             name="translate"
             style={styles.field}

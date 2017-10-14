@@ -4,6 +4,7 @@ import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
+import { I18n } from 'react-redux-i18n';
 
 class List extends BaseComponent {
 
@@ -68,7 +69,7 @@ class List extends BaseComponent {
     return (
       <div style={this.styles.body}>
         <AppBar
-          title="List albums"
+          title={I18n.t('pages.list.title')}
           iconElementRight={
             <IconButton
               style={this.styles.iconButton.large}

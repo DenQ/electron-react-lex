@@ -165,6 +165,17 @@ export default class MenuBuilder {
             }
           })
         },
+        {
+          label: 'localizations',
+          submenu: ['en', 'ru'].map((item) => {
+            return {
+              label: item,
+              click: () => {
+                this.mainWindow.webContents.send('change-locate', { code: item });
+              }
+            }
+          }),
+        }
       ]
     },
     {

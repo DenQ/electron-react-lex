@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Paper, RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-filled';
 import BaseComponent from 'lex/libs/base/component';
+import { I18n } from 'react-redux-i18n';
 
 const styles = {
   paper: {
@@ -79,7 +80,7 @@ export default class AlbumPaper extends BaseComponent {
         <div style={styles.menu}>
           <RaisedButton
             onClick={this.handleTouchTap}
-            label="Options"
+            label={I18n.t('components.papers.album.options')}
             primary={true}
             fullWidth={true}
           />
@@ -91,9 +92,18 @@ export default class AlbumPaper extends BaseComponent {
             onRequestClose={this.handleRequestClose}
           >
             <Menu>
-              <MenuItem primaryText="Run" onClick={handleToRun} />
-              <MenuItem primaryText="Edit" onClick={handleToEdit} />
-              <MenuItem primaryText="Remove" onClick={handleRemove} />
+              <MenuItem
+                primaryText={I18n.t('components.papers.album.run')}
+                onClick={handleToRun}
+              />
+              <MenuItem
+                primaryText={I18n.t('components.papers.album.edit')}
+                onClick={handleToEdit}
+              />
+              <MenuItem
+                primaryText={I18n.t('components.papers.album.remove')} 
+                onClick={handleRemove}
+              />
             </Menu>
           </Popover>
         </div>

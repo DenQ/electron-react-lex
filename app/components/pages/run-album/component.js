@@ -5,6 +5,7 @@ import Styles from 'lex/styles/custom';
 import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
+import { I18n } from 'react-redux-i18n';
 
 const styles = {
   button: {
@@ -69,7 +70,7 @@ export default class RunAlbum extends BaseComponent {
     return (
       <div style={this.styles.body}>
         <AppBar
-          title={'Run' + ' - ' + name}
+          title={I18n.t('pages.run.title', { name })}
           iconElementLeft={
             <IconButton
               style={Styles.iconButton.large}

@@ -3,11 +3,12 @@ import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
 import BaseComponent from 'lex/libs/base/component';
 import BaseContainer from 'lex/libs/container';
+import { I18n } from 'react-redux-i18n';
 
 const validate = values => {
   const errors = {};
   if (!values.name) {
-    errors.name = 'Required';
+    errors.name = I18n.t('components.forms.required');
   }
   return errors;
 };
@@ -21,7 +22,7 @@ class AddAlbum extends BaseComponent {
       <form onSubmit={handleSubmit}>
           <div>
             <Field
-              placeholder="Album Name"
+              placeholder={I18n.t('components.forms.addAlbum.placeholders.albumName')}
               component={TextField}
               fullWidth={true}
               name="name"
@@ -29,7 +30,7 @@ class AddAlbum extends BaseComponent {
           </div>
           <div>
             <Field
-              placeholder="Album Description"
+              placeholder={I18n.t('components.forms.addAlbum.placeholders.albumDescription')}
               component={TextField}
               name="description"
               fullWidth={true}

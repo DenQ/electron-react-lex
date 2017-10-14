@@ -3,10 +3,17 @@ import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware, routerActions } from 'react-router-redux';
 import { createLogger } from 'redux-logger';
+import {
+  loadTranslations,
+  setLocale,
+  syncTranslationWithStore,
+  i18nReducer
+} from 'react-redux-i18n';
 import rootReducer from '../reducers';
 import * as counterActions from '../actions/counter';
 import * as urlManagerActions from '../actions/url-manager';
 import type { counterStateType } from '../reducers/counter';
+import locales from '../locales/index';
 
 const history = createHashHistory();
 
@@ -51,6 +58,9 @@ const configureStore = (initialState?: counterStateType) => {
 
   // Create Store
   const store = createStore(rootReducer, initialState, enhancer);
+  syncTranslationWithStore(store);
+  store.dispatch(loadTranslations(locales));
+  store.dispatch(setLocale('en'));
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>
