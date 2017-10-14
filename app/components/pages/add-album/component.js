@@ -4,6 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
 // import { formValueSelector } from 'redux-form';
 import Form from 'lex/components/forms/add-album/component';
 import BaseComponent from 'lex/libs/base/component';
+import { I18n } from 'react-redux-i18n';
 
 export default class AddAlbum extends BaseComponent {
 
@@ -45,7 +46,7 @@ export default class AddAlbum extends BaseComponent {
     return (
       <div style={this.styles.body}>
         <AppBar
-          title="Add album"
+          title={I18n.t('pages.add.title')}
           iconElementLeft={
             <IconButton
               style={this.styles.iconButton.large}
@@ -61,7 +62,7 @@ export default class AddAlbum extends BaseComponent {
           <Form />
 
           <RaisedButton
-            label="Save & to edit"
+            label={I18n.t('pages.add.buttons.saveAndToEdit')}
             secondary={true}
             disabled={!isValidForm}
             onClick={this.handleToEdit}

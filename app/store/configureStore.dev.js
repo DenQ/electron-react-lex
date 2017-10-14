@@ -60,7 +60,7 @@ const configureStore = (initialState?: counterStateType) => {
   const store = createStore(rootReducer, initialState, enhancer);
   syncTranslationWithStore(store);
   store.dispatch(loadTranslations(locales));
-  store.dispatch(setLocale('ru'));
+  store.dispatch(setLocale('en'));
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>
