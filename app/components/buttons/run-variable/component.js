@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { RaisedButton } from 'material-ui';
+import OS from 'os';
 // import { I18n, setLocale } from 'react-redux-i18n';
 // import notification from 'lex/utils/notificate';
 
+const platforma = OS.platform();
 const styles = {
   button: {
     marginTop: 3,
@@ -10,7 +12,7 @@ const styles = {
     height: 60,
     title: {
       fontSize: 16,
-      fontWeight: 900,
+      fontWeight: platforma !== 'win32' ? 900 : 'normal',
     }
   }
 };

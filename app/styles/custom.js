@@ -1,6 +1,5 @@
 export default {
   body: {
-
   },
   iconButton: {
     largeIcon: {
