@@ -12,9 +12,7 @@ import { configureStore, history } from './store/configureStore';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
 import { setOption, getOption, list as listOptions } from './actions/options';
-import {
-  setLocale,
-} from 'react-redux-i18n';
+import { I18n, setLocale } from 'react-redux-i18n';
 
 const store = configureStore();
 
@@ -32,6 +30,9 @@ ipcRenderer.on('change-theme', (event, options) => {
     value: code,
   });
   renderApp();
+  new Notification('LEX', {
+    body: I18n.t('notifications.theme.change'),
+  });
 });
 
 ipcRenderer.on('change-locate', (event, options) => {
@@ -41,6 +42,9 @@ ipcRenderer.on('change-locate', (event, options) => {
     value: code,
   }).then(() => {
     renderApp();
+    new Notification('LEX', {
+      body: I18n.t('notifications.locate.change'),
+    });
   });
 });
 
@@ -84,6 +88,9 @@ function renderApp(flag) {
       );
     })
     .catch((error) => {
+      new Notification('LEX', {
+        body: `Error: ${error}`,
+      });
       console.log(error);
     });
 }

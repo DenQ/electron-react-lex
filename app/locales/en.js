@@ -40,5 +40,17 @@ export default {
         remove: 'Remove',
       }
     }
-  }
+  },
+  notifications: {
+    removed: {
+      album: 'Album was removed!',
+      word: 'Word was removed!',
+    },
+    locate: {
+      change: 'Location was changed!'
+    },
+    theme: {
+      change: 'Theme was changed!'
+    },
+  },
 };

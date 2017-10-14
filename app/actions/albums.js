@@ -1,6 +1,7 @@
 import db from 'lex/db/lex.dexie';
 import { LIST, GET } from 'lex/constants/album';
 import { spinnerContainer } from 'lex/constants/spinner';
+import { I18n } from 'react-redux-i18n';
 
 const { albums } = db;
 
@@ -46,6 +47,11 @@ export function get(id) {
 export function remove(doc, callback) {
   return (/*dispatch*/) => {
     return albums.delete(doc.id)
-      .then(callback);
+      .then(callback)
+      .then(() => {
+        new Notification('LEX', {
+          body: I18n.t('notifications.removed.album'),
+        });
+      })
   }
 }
