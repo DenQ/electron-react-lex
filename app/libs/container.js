@@ -19,6 +19,7 @@ function mapStateToProps(state) {
     forms: state.form,
     options: state.options,
     spinners: state.spinners,
+    statisticsAlbum: state.statisticsAlbum,
   };
 }
 
