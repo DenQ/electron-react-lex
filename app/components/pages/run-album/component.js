@@ -7,6 +7,7 @@ import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 import { I18n } from 'react-redux-i18n';
+import InfoStatistics from 'lex/containers/info/run-statics/container';
 
 const styles = {
   button: {
@@ -100,14 +101,17 @@ export default class RunAlbum extends BaseComponent {
             </IconButton>
           }
           iconElementRight={
-            <IconButton
-              style={Styles.iconButton.large}
-              iconStyle={Styles.iconButton.largeIcon}
-              onClick={this.handleResetStatistics}
-              title="Clear statistics"
-            >
-              <ClearStatisticsIcon />
-            </IconButton>
+            <div>
+              <InfoStatistics />
+              <IconButton
+                style={Styles.iconButton.large}
+                iconStyle={Styles.iconButton.largeIcon}
+                onClick={this.handleResetStatistics}
+                title="Clear statistics"
+              >
+                <ClearStatisticsIcon />
+              </IconButton>
+            </div>
           }
         />
         <div className="page-container">
