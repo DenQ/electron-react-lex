@@ -2,12 +2,12 @@ import db from 'lex/db/lex.dexie';
 import compareRandom from 'lex/utils/compare-random';
 import getRandomInt from 'lex/utils/get-random';
 import { LIST, CLEAR_STATE } from 'lex/constants/run';
+import { HIT_OVER } from 'lex/constants/statistics-album';
 import { spinnerContainer } from 'lex/constants/spinner';
 
 const { words } = db;
 const SIZE = 5;
 const ALBUM_IS_EMPTY = true;
-const HIT_OVER = 1;
 
 export function list(albumId) {
   albumId = Number(albumId);

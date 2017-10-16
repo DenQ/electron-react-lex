@@ -42,6 +42,9 @@ export default class RunAlbum extends BaseComponent {
       .resetStatistics(id)
       .then(()=> {
         return runActions.list(id);
+      })
+      .then((/*results*/)=>{
+        albumsActions.pullStatistics(id);
       });
   }
 
@@ -49,12 +52,16 @@ export default class RunAlbum extends BaseComponent {
     const { match, albumsActions, runActions } = this.props;
     const { id } = match.params;
     albumsActions.get(id);
-    runActions.list(id);
+    runActions.list(id)
+      .then(() => {
+        albumsActions.pullStatistics(id);
+      })
   }
 
   componentWillUnmount() {
-    const { runActions } = this.props;
+    const { runActions, albumsActions } = this.props;
     runActions.clearState();
+    albumsActions.clearStatistics();
   }
 
   render() {

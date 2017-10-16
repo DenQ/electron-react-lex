@@ -16,6 +16,7 @@ import run from './run';
 import exampleForm from './example-form';
 import options from './options';
 import spinners from './spinners';
+import statisticsAlbum from './statistincs-album';
 
 const rootReducer = combineReducers({
   i18n: i18nReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   router,
   options,
   spinners,
+  statisticsAlbum,
 });
 
 export default rootReducer;

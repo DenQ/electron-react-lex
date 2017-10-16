@@ -9,6 +9,7 @@ const { words } = db;
 export function insert(docs, callback) {
   return (dispatch) => {
     docs.createdDT = +new Date;
+    docs.hit = 0;
     words.add(docs)
       .then((id) => callback(dispatch, { id }) )
       .catch(error => console.error(error));

@@ -1,5 +1,6 @@
 import db from 'lex/db/lex.dexie';
 import { LIST, GET } from 'lex/constants/album';
+import { PULL, HIT_OVER, CLEAR } from 'lex/constants/statistics-album';
 import { spinnerContainer } from 'lex/constants/spinner';
 import { I18n } from 'react-redux-i18n';
 import notification from 'lex/utils/notificate';
@@ -61,5 +62,31 @@ export function resetStatistics(albumId) {
       .modify((item) => {
         item.hit = 0;
       });
+  }
+}
+
+export function pullStatistics(albumId) {
+  albumId = Number(albumId);
+  return (dispatch) => {
+    return words
+      .where({albumId})
+      .toArray()
+      .then((results) => {
+        dispatch({
+          type: PULL,
+          length: results.length,
+          learned: results.filter(item => item.hit >= HIT_OVER).length,
+        });
+      })
+  }
+}
+
+export function clearStatistics() {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR,
+      length: 0,
+      learned: 0,
+    });
   }
 }

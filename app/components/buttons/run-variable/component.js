@@ -30,7 +30,7 @@ export default class RunVariable extends Component {
   }
 
   handleSelect() {
-    const { match, runActions, run, record } = this.props;
+    const { match, runActions, run, record, albumsActions } = this.props;
     const questionId = Number(run.question.id);
     const recordId = Number(record.id);
     if (recordId === questionId) {
@@ -38,7 +38,10 @@ export default class RunVariable extends Component {
       runActions.incrementHit(questionId)
         .then(() => {
           runActions.clearState();
-          runActions.list(id);
+          return runActions.list(id);
+        })
+        .then(() => {
+          return albumsActions.pullStatistics(record.albumId);
         });
     } else {
       runActions.resetDoubleHit([questionId, recordId])
@@ -46,6 +49,10 @@ export default class RunVariable extends Component {
           this.setState({
             disabled: true,
           });
+          return 0;
+        })
+        .then(() => {
+          return albumsActions.pullStatistics(record.albumId);
         });
     }
   }
