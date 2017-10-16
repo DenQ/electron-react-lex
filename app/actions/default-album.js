@@ -3,7 +3,7 @@ import { LIST } from 'lex/constants/album';
 import dump from 'lex/db/default-album';
 
 const ALBUM_ALRADY_EXISTING = 'album_alrady_existing';
-const COUNT_ALBUMS = 9;
+const COUNT_ALBUMS = 3;
 const albumName = 'Irregular verbs';
 const { albums, words } = db;
 
