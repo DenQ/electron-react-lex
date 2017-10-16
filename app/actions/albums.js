@@ -4,7 +4,7 @@ import { spinnerContainer } from 'lex/constants/spinner';
 import { I18n } from 'react-redux-i18n';
 import notification from 'lex/utils/notificate';
 
-const { albums } = db;
+const { albums, words } = db;
 
 export function insert(docs, callback) {
   return (dispatch) => {
@@ -50,5 +50,16 @@ export function remove(doc, callback) {
     return albums.delete(doc.id)
       .then(callback)
       .then(() => notification(I18n.t('notifications.removed.album')));
+  }
+}
+
+export function resetStatistics(albumId) {
+  albumId = Number(albumId);
+  return (dispatch) => {
+    return words
+      .where({albumId})
+      .modify((item) => {
+        item.hit = 0;
+      });
   }
 }

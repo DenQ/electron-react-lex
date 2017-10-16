@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, IconButton, RaisedButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
+import ClearStatisticsIcon from 'material-ui/svg-icons/action/restore';
 import Styles from 'lex/styles/custom';
 import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
@@ -26,11 +27,22 @@ export default class RunAlbum extends BaseComponent {
   constructor(props) {
     super(props);
     this.handleToList = this.handleToList.bind(this);
+    this.handleResetStatistics = this.handleResetStatistics.bind(this);
   }
 
   handleToList() {
     const { transitionTo } = this.props.urlManagerActions;
     transitionTo('/');
+  }
+
+  handleResetStatistics() {
+    const { match, albumsActions, runActions } = this.props;
+    const { id } = match.params;
+    albumsActions
+      .resetStatistics(id)
+      .then(()=> {
+        return runActions.list(id);
+      });
   }
 
   componentDidMount() {
@@ -78,6 +90,16 @@ export default class RunAlbum extends BaseComponent {
               onClick={this.handleToList}
             >
               <NavigationClose />
+            </IconButton>
+          }
+          iconElementRight={
+            <IconButton
+              style={Styles.iconButton.large}
+              iconStyle={Styles.iconButton.largeIcon}
+              onClick={this.handleResetStatistics}
+              title="Clear statistics"
+            >
+              <ClearStatisticsIcon />
             </IconButton>
           }
         />

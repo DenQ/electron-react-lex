@@ -34,8 +34,8 @@ export function run() {
         let counter = 0;
         const queries = dump.map((item) => {
           const albumId = albums[counter];
-          if (counter <= lenthAlbums) {
-            counter++;
+          if (counter < lenthAlbums-1) {
+            counter = counter + 1;
           } else {
             counter = 0;
           }
@@ -45,6 +45,7 @@ export function run() {
             translateWord,
             originalWord,
             albumId,
+            hit: 0,
           });
         });
         return Promise.all(queries);

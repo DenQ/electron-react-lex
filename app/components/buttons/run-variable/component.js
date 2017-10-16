@@ -35,12 +35,18 @@ export default class RunVariable extends Component {
     const recordId = Number(record.id);
     if (recordId === questionId) {
       const { id } = match.params;
-      runActions.clearState();
-      runActions.list(id);
+      runActions.incrementHit(questionId)
+        .then(() => {
+          runActions.clearState();
+          runActions.list(id);
+        });
     } else {
-      this.setState({
-        disabled: true,
-      });
+      runActions.resetDoubleHit([questionId, recordId])
+        .then(() => {
+          this.setState({
+            disabled: true,
+          });
+        });
     }
   }
 

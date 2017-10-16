@@ -5,8 +5,9 @@ import { LIST, CLEAR_STATE } from 'lex/constants/run';
 import { spinnerContainer } from 'lex/constants/spinner';
 
 const { words } = db;
-const SIZE = 6;
+const SIZE = 5;
 const ALBUM_IS_EMPTY = true;
+const HIT_OVER = 1;
 
 export function list(albumId) {
   albumId = Number(albumId);
@@ -16,9 +17,10 @@ export function list(albumId) {
       show: true,
     });
     return words
-      .where({ albumId })
+      .where({albumId})
       .toArray()
       .then((records) => {
+        records = records.filter(item => item.hit < HIT_OVER);
         if (records.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
@@ -33,16 +35,16 @@ export function list(albumId) {
         for(let i=0; i<2*SIZE; i++) {
           answers.sort(compareRandom);
         }
-          dispatch({
-            type: spinnerContainer,
-            show: false,
-          });
-          return dispatch({
-            type: LIST,
-            question,
-            answers,
-            vector,
-          });
+        dispatch({
+          type: spinnerContainer,
+          show: false,
+        });
+        return dispatch({
+          type: LIST,
+          question,
+          answers,
+          vector,
+        });
       })
       .catch((error) => {
         if (error.code !== ALBUM_IS_EMPTY) {
@@ -62,5 +64,34 @@ export function clearState() {
     dispatch({
       type: CLEAR_STATE,
     });
+  }
+}
+
+export function incrementHit(wordId) {
+  return () => {
+    return words
+      .where({id :wordId})
+      .modify((item) => {
+        item.hit++;
+      });
+  }
+}
+
+export function resetOneHit(wordId) {
+  return (dispatch) => {
+    return words
+      .where({id: wordId})
+      .modify((item) => {
+        item.hit = 0;
+      });
+  }
+}
+
+export function resetDoubleHit(words) {
+  return (dispatch) => {
+    return Promise.all([
+      resetOneHit(words[0])(dispatch),
+      resetOneHit(words[1])(dispatch),
+    ]);
   }
 }
