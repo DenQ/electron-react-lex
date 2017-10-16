@@ -41,10 +41,12 @@ export default class RunVariable extends Component {
           runActions.list(id);
         });
     } else {
-      //set hit to zero
-      this.setState({
-        disabled: true,
-      });
+      runActions.resetDoubleHit([questionId, recordId])
+        .then(() => {
+          this.setState({
+            disabled: true,
+          });
+        });
     }
   }
 

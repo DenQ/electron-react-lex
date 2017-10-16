@@ -7,6 +7,7 @@ import { spinnerContainer } from 'lex/constants/spinner';
 const { words } = db;
 const SIZE = 6;
 const ALBUM_IS_EMPTY = true;
+const HIT_OVER = 5;
 
 export function list(albumId) {
   albumId = Number(albumId);
@@ -22,7 +23,7 @@ export function list(albumId) {
         if (records.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
-        records = records.filter(item => item.hit < 2);
+        records = records.filter(item => item.hit < HIT_OVER);
         const vector = Boolean(getRandomInt(0, 1));
         const questionIndex = getRandomInt(0, records.length - 1);
         const question = records[questionIndex];
@@ -67,11 +68,30 @@ export function clearState() {
 }
 
 export function incrementHit(wordId) {
-  return (dispatch) => {
+  return () => {
     return words
-      .where({id:wordId})
+      .where({id :wordId})
       .modify((item) => {
         item.hit++;
       });
+  }
+}
+
+export function resetOneHit(wordId) {
+  return (dispatch) => {
+    return words
+      .where({id: wordId})
+      .modify((item) => {
+        item.hit = 0;
+      });
+  }
+}
+
+export function resetDoubleHit(words) {
+  return (dispatch) => {
+    return Promise.all([
+      resetOneHit(words[0])(dispatch),
+      resetOneHit(words[1])(dispatch),
+    ]);
   }
 }
