@@ -16,12 +16,13 @@ export function list(albumId) {
       show: true,
     });
     return words
-      .where({ albumId })
+      .where({albumId})
       .toArray()
       .then((records) => {
         if (records.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
+        records = records.filter(item => item.hit < 2);
         const vector = Boolean(getRandomInt(0, 1));
         const questionIndex = getRandomInt(0, records.length - 1);
         const question = records[questionIndex];
@@ -62,5 +63,15 @@ export function clearState() {
     dispatch({
       type: CLEAR_STATE,
     });
+  }
+}
+
+export function incrementHit(wordId) {
+  return (dispatch) => {
+    return words
+      .where({id:wordId})
+      .modify((item) => {
+        item.hit++;
+      });
   }
 }

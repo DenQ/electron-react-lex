@@ -35,9 +35,13 @@ export default class RunVariable extends Component {
     const recordId = Number(record.id);
     if (recordId === questionId) {
       const { id } = match.params;
-      runActions.clearState();
-      runActions.list(id);
+      runActions.incrementHit(questionId)
+        .then(() => {
+          runActions.clearState();
+          runActions.list(id);
+        });
     } else {
+      //set hit to zero
       this.setState({
         disabled: true,
       });
