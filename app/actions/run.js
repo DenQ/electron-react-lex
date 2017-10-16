@@ -5,9 +5,9 @@ import { LIST, CLEAR_STATE } from 'lex/constants/run';
 import { spinnerContainer } from 'lex/constants/spinner';
 
 const { words } = db;
-const SIZE = 6;
+const SIZE = 5;
 const ALBUM_IS_EMPTY = true;
-const HIT_OVER = 5;
+const HIT_OVER = 1;
 
 export function list(albumId) {
   albumId = Number(albumId);
@@ -20,10 +20,10 @@ export function list(albumId) {
       .where({albumId})
       .toArray()
       .then((records) => {
+        records = records.filter(item => item.hit < HIT_OVER);
         if (records.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
-        records = records.filter(item => item.hit < HIT_OVER);
         const vector = Boolean(getRandomInt(0, 1));
         const questionIndex = getRandomInt(0, records.length - 1);
         const question = records[questionIndex];
@@ -35,16 +35,16 @@ export function list(albumId) {
         for(let i=0; i<2*SIZE; i++) {
           answers.sort(compareRandom);
         }
-          dispatch({
-            type: spinnerContainer,
-            show: false,
-          });
-          return dispatch({
-            type: LIST,
-            question,
-            answers,
-            vector,
-          });
+        dispatch({
+          type: spinnerContainer,
+          show: false,
+        });
+        return dispatch({
+          type: LIST,
+          question,
+          answers,
+          vector,
+        });
       })
       .catch((error) => {
         if (error.code !== ALBUM_IS_EMPTY) {
