@@ -48,6 +48,11 @@ export default {
   menuItem: {
     hoverColor: fade(primary3Color, 0.5),
   },
+  badge: {
+    primaryColor: palette.accent1Color,
+    secondaryColor: palette.accent3Color,
+   secondaryTextColor: white,
+  },
   body:{
     backgroundColor: palette.primary2Color,
   }
