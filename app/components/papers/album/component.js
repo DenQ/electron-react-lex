@@ -3,6 +3,7 @@ import { Paper, RaisedButton, Popover, Menu, MenuItem } from 'material-ui';
 import PlayIcon from 'material-ui/svg-icons/av/play-circle-filled';
 import BaseComponent from 'lex/libs/base/component';
 import { I18n } from 'react-redux-i18n';
+import Badge from 'material-ui/Badge';
 
 const styles = {
   paper: {
@@ -15,7 +16,7 @@ const styles = {
   },
   menu: {
     position: 'relative',
-    top: 50,
+    top: 20,
   },
   text: {
     color: 'black',
@@ -24,7 +25,7 @@ const styles = {
     play: {
       cursor: 'pointer',
       position: 'relative',
-      top: 20,
+      top: 5,
       width: 60,
       height: 60,
     }
@@ -75,7 +76,16 @@ export default class AlbumPaper extends BaseComponent {
           {record.name}
         </div>
 
-        <PlayIcon style={styles.icon.play} color={this.styles.palette.primary3Color} />
+        <Badge
+          badgeContent={'1'}
+          secondary={true}
+          badgeStyle={{top: 27, right: 20}}
+        >
+          <PlayIcon
+            style={styles.icon.play}
+            color={this.styles.palette.primary3Color}
+          />
+        </Badge>
 
         <div style={styles.menu}>
           <RaisedButton
@@ -101,7 +111,7 @@ export default class AlbumPaper extends BaseComponent {
                 onClick={handleToEdit}
               />
               <MenuItem
-                primaryText={I18n.t('components.papers.album.remove')} 
+                primaryText={I18n.t('components.papers.album.remove')}
                 onClick={handleRemove}
               />
             </Menu>
