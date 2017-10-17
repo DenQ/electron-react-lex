@@ -32,6 +32,11 @@ const styles = {
   }
 };
 
+function calculateLearning(album) {
+  const { size, learned } = album;
+  return Math.floor(learned * 100 / size);
+}
+
 export default class AlbumPaper extends BaseComponent {
 
   constructor(props) {
@@ -77,14 +82,15 @@ export default class AlbumPaper extends BaseComponent {
         </div>
 
         <Badge
-          badgeContent={'1'}
+          badgeContent={calculateLearning(record)}
           secondary={true}
           badgeStyle={{top: 27, right: 20}}
+          title="Persent learning"
         >
-          <PlayIcon
-            style={styles.icon.play}
-            color={this.styles.palette.primary3Color}
-          />
+        <PlayIcon
+          style={styles.icon.play}
+          color={this.styles.palette.primary3Color}
+        />
         </Badge>
 
         <div style={styles.menu}>
