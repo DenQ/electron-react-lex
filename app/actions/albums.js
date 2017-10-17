@@ -6,10 +6,13 @@ import { I18n } from 'react-redux-i18n';
 import notification from 'lex/utils/notificate';
 
 const { albums, words } = db;
+const ALBUM_IS_EMPTY = 'album_is_empty';
 
 export function insert(docs, callback) {
   return (dispatch) => {
     docs.createdDT = +new Date;
+    docs.size = 0;
+    docs.learned = 0;
     albums.add(docs)
       .then((id) => callback(dispatch, { id }) )
       .catch(error => console.error(error));
@@ -23,6 +26,15 @@ export function list() {
       show: true,
     });
     return albums.toArray()
+      .then((results) => {
+        const pull = [];
+        results.forEach((item) => {
+          const query = recalculateAlbum(item.id)(dispatch);
+          pull.push(query);
+        });
+        return Promise.all(pull);
+      })
+      .then(() => albums.toArray())
       .then((records) => {
         dispatch({
           type: spinnerContainer,
@@ -88,5 +100,31 @@ export function clearStatistics() {
       length: 0,
       learned: 0,
     });
+  }
+}
+
+export function recalculateAlbum(albumId) {
+  console.log(222);
+  return (dispatch) => {
+    return words
+      .where({ albumId })
+      .toArray()
+      .then((results) => {
+        if (results.length === 0) {
+          return Promise.reject({code: ALBUM_IS_EMPTY});
+        }
+        return {
+          size: results.length,
+          learned: results.filter(item => item.hit >= HIT_OVER).length,
+        };
+      })
+      .then((infoAlbum) => {
+        return albums.update(albumId, infoAlbum);
+      })
+      .catch((error) => {
+        if (error.code == ALBUM_IS_EMPTY) {
+          console.log(error);
+        }
+      });
   }
 }

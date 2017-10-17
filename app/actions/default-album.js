@@ -23,6 +23,8 @@ export function run() {
               description: 'Default album',
               cretedDT: +new Date,
               default: 1,
+              size: 0,
+              learned: 0,
             });
             pull.push(request);
           }
