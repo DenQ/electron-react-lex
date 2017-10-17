@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/arrow-back';
+import ToRunIcon from 'material-ui/svg-icons/av/play-circle-filled';
 import Styles from 'lex/styles/custom';
 import AddWordForm from 'lex/components/forms/add-word/component';
 import BaseComponent from 'lex/libs/base/component';
@@ -17,6 +18,7 @@ export default class EditAlbum extends BaseComponent {
     super(props);
     nameMethods.forEach((methodName) => {
       this[methodName] = this[methodName].bind(this);
+      console.log(methodName, this[methodName]);
     });
   }
 
@@ -61,9 +63,9 @@ export default class EditAlbum extends BaseComponent {
   }
 
   handleToRun() {
-    const { transitionTo } = this.props.urlManagerActions;
+    const { urlManagerActions } = this.props;
     const { id } = this.props.match.params;
-    transitionTo(`/album-run/${id}`);
+    urlManagerActions.transitionTo(`/run-album/${id}`);
   }
 
   componentDidMount() {
@@ -115,6 +117,17 @@ export default class EditAlbum extends BaseComponent {
             >
               <NavigationClose />
             </IconButton>
+          }
+          iconElementRight={
+            <IconButton
+              style={Styles.iconButton.large}
+              iconStyle={Styles.iconButton.largeIcon}
+              onClick={this.handleToRun}
+              title="Testing this album"
+            >
+              <ToRunIcon />
+            </IconButton>
+
           }
         />
         <div className="page-container">
