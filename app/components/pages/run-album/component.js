@@ -7,7 +7,7 @@ import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 import { I18n } from 'react-redux-i18n';
-import InfoStatistics from 'lex/containers/info/run-statics/container';
+import InfoStatistics from 'lex/containers/badges/run-statics/container';
 
 const styles = {
   button: {
