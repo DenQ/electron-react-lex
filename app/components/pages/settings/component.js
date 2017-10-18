@@ -14,7 +14,6 @@ export default class SettingsPage extends BaseComponent {
 
   constructor(props) {
     super(props);
-    console.log(222);
     this.handleToList = this.handleToList.bind(this);
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, IconButton } from 'material-ui';
 import AddCircle from 'material-ui/svg-icons/content/add-circle';
-import ToSettingsIcon from 'material-ui/svg-icons/content/add-circle';
+import ToSettingsIcon from 'material-ui/svg-icons/action/settings';
 import AlbumPaper from 'lex/containers/papers/album/container';
 import BaseComponent from 'lex/libs/base/component';
 import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
@@ -82,16 +82,16 @@ class List extends BaseComponent {
               <IconButton
                 style={this.styles.iconButton.large}
                 iconStyle={this.styles.iconButton.largeIcon}
-                onClick={this.handleToSettings}
+                onClick={this.handleToAdd}
               >
-                <ToSettingsIcon />
+                <AddCircle />
               </IconButton>
               <IconButton
                 style={this.styles.iconButton.large}
                 iconStyle={this.styles.iconButton.largeIcon}
-                onClick={this.handleToAdd}
+                onClick={this.handleToSettings}
               >
-                <AddCircle />
+                <ToSettingsIcon />
               </IconButton>
             </span>
           }
