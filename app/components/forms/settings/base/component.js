@@ -7,6 +7,7 @@ import BaseContainer from 'lex/libs/container';
 import { I18n } from 'react-redux-i18n';
 import { connect } from 'react-redux';
 import { pullData } from 'lex/actions/form-setup';
+import fillData from 'lex/utils/object-fill-from-data';
 
 const validate = values => {
   const errors = {};
@@ -21,21 +22,14 @@ const validate = values => {
   return errors;
 };
 
-function getValue(data, key){
-  const filtered = data.filter(item => item.key === key);
-  if (filtered.length) {
-    return filtered[0];
-  }
-}
-
 class SettingsBaseForm extends BaseComponent {
 
   componentDidMount() {
     const { data, load, form } = this.props;
     if (form, data) {
-      const hitSize = getValue(data, 'hitSize');
+      const { hitSize } = fillData(data);
       if (hitSize) {
-        load('settings-base', 'hitSize', hitSize.value);
+        load('settings-base', 'hitSize', hitSize);
       }
     }
   }
