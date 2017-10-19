@@ -29,6 +29,7 @@ export default class SettingsPage extends BaseComponent {
 
   render() {
     this.decorateStyle();
+    const { options } = this.props;
     return (
       <div style={this.styles.body}>
         <AppBar
@@ -46,6 +47,7 @@ export default class SettingsPage extends BaseComponent {
         <div className="page-container">
           <SettingBaseForm
             handleSubmit={this.handleSave}
+            data={options.records}
           />
         </div>
       </div>

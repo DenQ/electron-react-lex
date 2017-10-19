@@ -59,6 +59,12 @@ function setOptionValue(doc) {
 
 function renderApp(flag) {
   listOptions()(store.dispatch)
+    .then(() => {
+      return setOptionValue({
+        key: 'hitSize',
+        value: 5,
+      });
+    })
     .then((results) => {
       const locate = results.filter((item) => item.key === 'locate');
       const code = locate.length > 0 ? locate[0].value : 'en';
