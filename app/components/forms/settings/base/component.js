@@ -8,8 +8,13 @@ import { I18n } from 'react-redux-i18n';
 
 const validate = values => {
   const errors = {};
-  if (!values.hitSize) {
+  const { hitSize } = values;
+  if (!hitSize) {
     errors.hitSize = I18n.t('components.forms.required');
+  } else if (isNaN(Number(hitSize))) {
+    errors.hitSize = I18n.t('components.forms.mustBeNumber');
+  } else if (Number(hitSize) <= 0) {
+    errors.hitSize = I18n.t('components.forms.mustBeGreaterZero');
   }
   return errors;
 };

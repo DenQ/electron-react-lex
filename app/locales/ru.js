@@ -22,6 +22,8 @@ export default {
   components: {
     forms: {
       required: 'Обязательно для заполнения',
+      mustBeNumber: 'Значение должно быть чисолм',
+      mustBeGreaterZero: 'Значение должно быть больше 0',
       addAlbum: {
         placeholders: {
           albumName: 'Название Альбома',

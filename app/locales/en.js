@@ -22,6 +22,8 @@ export default {
   components: {
     forms: {
       required: 'Required',
+      mustBeNumber: 'The value must be a number',
+      mustBeGreaterZero: 'Value must be greater than 0',
       addAlbum: {
         placeholders: {
           albumName: 'Album Name',
