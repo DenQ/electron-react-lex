@@ -6,15 +6,15 @@ import Styles from 'lex/styles/custom';
 // import RunVariableButton from 'lex/containers/buttons/run-variable/container';
 import BaseComponent from 'lex/libs/base/component';
 // import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
-// import { I18n } from 'react-redux-i18n';
-// import InfoStatistics from 'lex/containers/badges/run-statics/container';
-
+import { I18n } from 'react-redux-i18n';
+import SettingBaseForm from 'lex/components/forms/settings/base/component';
 
 export default class SettingsPage extends BaseComponent {
 
   constructor(props) {
     super(props);
     this.handleToList = this.handleToList.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleToList() {
@@ -22,15 +22,17 @@ export default class SettingsPage extends BaseComponent {
     transitionTo('/');
   }
 
+  handleSave(event) {
+    event.preventDefault();
+    console.log(111);
+  }
+
   render() {
     this.decorateStyle();
-    // const {  spinners } = this.props;
-    // const { pageContainer } = spinners;
-
     return (
       <div style={this.styles.body}>
         <AppBar
-          title='Settings'
+          title={I18n.t('pages.settings.title')}
           iconElementLeft={
             <IconButton
               style={Styles.iconButton.large}
@@ -42,7 +44,9 @@ export default class SettingsPage extends BaseComponent {
           }
         />
         <div className="page-container">
-          Settings
+          <SettingBaseForm
+            handleSubmit={this.handleSave}
+          />
         </div>
       </div>
     );

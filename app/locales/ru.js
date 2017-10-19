@@ -15,6 +15,9 @@ export default {
     run: {
       title: 'Тестирование - %{name}'
     },
+    settings: {
+      title: 'Настройки',
+    },
   },
   components: {
     forms: {
@@ -29,6 +32,11 @@ export default {
         placeholders: {
           word: 'Слово',
           translate: 'Перевод',
+        }
+      },
+      settings: {
+        placeholders: {
+          hitSize: 'Количество правильных ответов',
         }
       },
     },

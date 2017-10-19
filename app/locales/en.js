@@ -15,6 +15,9 @@ export default {
     run: {
       title: 'Testing album - %{name}'
     },
+    settings: {
+      title: 'Settings',
+    },
   },
   components: {
     forms: {
@@ -29,6 +32,11 @@ export default {
         placeholders: {
           word: 'Word',
           translate: 'Translate',
+        }
+      },
+      settings: {
+        placeholders: {
+          hitSize: 'Hit size',
         }
       },
     },
