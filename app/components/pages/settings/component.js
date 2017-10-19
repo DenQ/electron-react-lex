@@ -24,7 +24,13 @@ export default class SettingsPage extends BaseComponent {
 
   handleSave(event) {
     event.preventDefault();
-    console.log(111);
+    const { optionsActions, forms } = this.props;
+    const state = forms['settings-base'];
+    const { hitSize } = state.values;
+
+    optionsActions.setOption({
+      key: 'hitSize', value: hitSize,
+    });
   }
 
   render() {

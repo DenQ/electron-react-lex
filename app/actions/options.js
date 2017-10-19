@@ -27,6 +27,26 @@ export function setOption(doc) {
   }
 }
 
+export function setOptionDefault(doc) {
+  return (dispatch) => {
+    const { key } = doc;
+    return options
+      .where({ key })
+      .toArray()
+      .then((results) => {
+        if (results.length === 0) {
+          return options.add(doc);
+        }
+      })
+      .then(() => {
+        return list()(dispatch);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
+
 export function list() {
   return (dispatch) => {
     return options

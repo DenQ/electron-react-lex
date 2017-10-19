@@ -10,7 +10,7 @@ import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import IndigoThema from './themes/dark-indigo';
 import './app.global.scss';
-import { setOption, getOption, list as listOptions } from './actions/options';
+import { setOption, setOptionDefault, getOption, list as listOptions } from './actions/options';
 import notification from 'lex/utils/notificate';
 
 const store = configureStore();
@@ -57,10 +57,15 @@ function setOptionValue(doc) {
   return action(store.dispatch);
 }
 
+function setOptionDefaultValue(doc) {
+  const action = setOptionDefault(doc);
+  return action(store.dispatch);
+}
+
 function renderApp(flag) {
   listOptions()(store.dispatch)
     .then(() => {
-      return setOptionValue({
+      return setOptionDefaultValue({
         key: 'hitSize',
         value: 5,
       });
