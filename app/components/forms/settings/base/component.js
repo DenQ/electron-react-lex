@@ -38,10 +38,11 @@ const ThemeSelect = () => {
   });
   return (
     <Field
-      name="theme"
+      floatingLabelText="Theme"
       component={SelectField}
       hintText="Theme"
-      floatingLabelText="Theme"
+      fullWidth={true}
+      name="theme"
     >
       {items}
     </Field>
