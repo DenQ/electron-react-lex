@@ -3,8 +3,6 @@ import BaseComponent from 'lex/libs/base/component';
 import { Field } from 'redux-form';
 import { MenuItem } from 'material-ui';
 import { SelectField } from 'redux-form-material-ui';
-// import themes from 'lex/constants/menu-themes';
-
 
 export default class SelectCustom extends BaseComponent {
 
@@ -14,22 +12,23 @@ export default class SelectCustom extends BaseComponent {
 
   render() {
     this.decorateStyle();
-    const { data, fieldName } = this.props;
+    const { data, fieldName, floatingLabelText, hintText, fullWidth } = this.props;
     const items = data.map((item, index) => {
+      const key = `select-${index}`;
       return (
         <MenuItem
           primaryText={item.label}
           value={item.code}
-          key={index}
+          key={key}
         />
       );
     });
     return (
       <Field
-        floatingLabelText="Theme"
+        floatingLabelText={floatingLabelText}
         component={SelectField}
-        hintText="Theme"
-        fullWidth={true}
+        hintText={hintText}
+        fullWidth={fullWidth}
         name={fieldName}
       >
         {items}

@@ -1,14 +1,11 @@
 import React from 'react';
-import { RaisedButton, MenuItem } from 'material-ui';
-import {
-  TextField,
-  SelectField
-} from 'redux-form-material-ui';
+import { RaisedButton } from 'material-ui';
+import { TextField } from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
-import BaseComponent from 'lex/libs/base/component';
-import BaseContainer from 'lex/libs/container';
 import { I18n } from 'react-redux-i18n';
 import { connect } from 'react-redux';
+import BaseComponent from 'lex/libs/base/component';
+import BaseContainer from 'lex/libs/container';
 import { pullData } from 'lex/actions/form-setup';
 import fillData from 'lex/utils/object-fill-from-data';
 import themes from 'lex/constants/menu-themes';
@@ -59,6 +56,9 @@ class SettingsBaseForm extends BaseComponent {
         <div>
           <SelectCustom
             fieldName="theme"
+            fullWidth={true}
+            hintText="Theme"
+            floatingLabelText="Theme"
             data={themes}
           />
         </div>
@@ -79,10 +79,8 @@ class SettingsBaseForm extends BaseComponent {
 SettingsBaseForm = reduxForm({
   form: 'settings-base',
   validate,
-})(SettingsBaseForm);
-
-SettingsBaseForm = connect(null, {
-  load: pullData
-})(SettingsBaseForm);
+})(connect(null, {
+  load: pullData,
+})(SettingsBaseForm));
 
 export default BaseContainer(SettingsBaseForm);
