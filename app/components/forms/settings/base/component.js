@@ -41,8 +41,7 @@ const ThemeSelect = () => {
       name="theme"
       component={SelectField}
       hintText="Theme"
-      floatingLabelText="Driver"
-      defaultValue="blue"
+      floatingLabelText="Theme"
     >
       {items}
     </Field>
@@ -54,13 +53,13 @@ class SettingsBaseForm extends BaseComponent {
   componentDidMount() {
     const { data, load, form } = this.props;
     if (form, data) {
-      const { hitSize, theme } = fillData(data);
-      if (hitSize) {
-        load('settings-base', 'hitSize', hitSize);
-      }
-      if (theme) {
-        load('settings-base', 'theme', theme);
-      }
+      const fields = fillData(data);
+      Object.keys(fields).forEach((item) => {
+        const value = fields[item];
+        if (value) {
+          load('settings-base', item, value);
+        }
+      });
     }
   }
 

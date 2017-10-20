@@ -26,23 +26,21 @@ export default class SettingsPage extends BaseComponent {
     event.preventDefault();
     const { optionsActions, forms } = this.props;
     const state = forms['settings-base'];
-    const { hitSize, theme } = state.values;
+    const fields = state.values;
     const queries = [];
-    if (hitSize) {
-      const query = optionsActions.setOption({
-        key: 'hitSize', value: hitSize,
-      });
-      queries.push(query);
-    }
-    if (theme) {
-      const query = optionsActions.setOption({
-        key: 'theme', value: theme,
-      });
-      queries.push(query);
-    }
+    Object.keys(fields).forEach((key) => {
+      const value = fields[key];
+      if (value) {
+        const query = optionsActions.setOption({ key, value });
+        queries.push(query);
+      }
+    });
     Promise.all(queries)
       .then(() => {
         console.log('success');
+      })
+      .catch((error) => {
+        console.log(error);
       })
   }
 
