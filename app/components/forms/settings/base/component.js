@@ -72,6 +72,7 @@ class SettingsBaseForm extends BaseComponent {
         <div>
           <Field
             placeholder={I18n.t('components.forms.settings.placeholders.hitSize')}
+            floatingLabelText="Hit size"
             component={TextField}
             fullWidth={true}
             name="hitSize"
