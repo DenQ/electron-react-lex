@@ -9,6 +9,7 @@ import BaseContainer from 'lex/libs/container';
 import { pullData } from 'lex/actions/form-setup';
 import fillData from 'lex/utils/object-fill-from-data';
 import themes from 'lex/constants/menu-themes';
+import locates from 'lex/constants/menu-locates';
 import SelectCustom from 'lex/containers/selects/custom/container';
 
 const validate = values => {
@@ -45,21 +46,30 @@ class SettingsBaseForm extends BaseComponent {
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <Field
-            placeholder={I18n.t('components.forms.settings.placeholders.hitSize')}
-            floatingLabelText="Hit size"
-            component={TextField}
-            fullWidth={true}
-            name="hitSize"
-          />
-        </div>
-        <div>
           <SelectCustom
             fieldName="theme"
             fullWidth={true}
             hintText="Theme"
             floatingLabelText="Theme"
             data={themes}
+          />
+        </div>
+        <div>
+          <SelectCustom
+            fieldName="locate"
+            fullWidth={true}
+            hintText="Locate"
+            floatingLabelText="Locate"
+            data={locates}
+          />
+        </div>
+        <div>
+          <Field
+            placeholder={I18n.t('components.forms.settings.placeholders.hitSize')}
+            floatingLabelText="Hit size"
+            component={TextField}
+            fullWidth={true}
+            name="hitSize"
           />
         </div>
         <div>
@@ -76,11 +86,9 @@ class SettingsBaseForm extends BaseComponent {
 
 }
 
-SettingsBaseForm = reduxForm({
+export default BaseContainer(reduxForm({
   form: 'settings-base',
   validate,
 })(connect(null, {
   load: pullData,
-})(SettingsBaseForm));
-
-export default BaseContainer(SettingsBaseForm);
+})(SettingsBaseForm)));
