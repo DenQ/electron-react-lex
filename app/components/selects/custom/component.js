@@ -25,6 +25,7 @@ export default class SelectCustom extends BaseComponent {
     });
     return (
       <Field
+        onChange={this.props.handleChange}
         floatingLabelText={floatingLabelText}
         component={SelectField}
         hintText={hintText}

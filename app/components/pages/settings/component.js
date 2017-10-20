@@ -8,6 +8,7 @@ import BaseComponent from 'lex/libs/base/component';
 // import MaterialSpinner from 'lex/containers/spinners/material-spinner/container';
 import { I18n } from 'react-redux-i18n';
 import SettingBaseForm from 'lex/components/forms/settings/base/component';
+import renderApp from '../../../render-app';
 
 export default class SettingsPage extends BaseComponent {
 
@@ -38,6 +39,7 @@ export default class SettingsPage extends BaseComponent {
     Promise.all(queries)
       .then(() => {
         console.log('success');
+        renderApp();
       })
       .catch((error) => {
         console.log(error);

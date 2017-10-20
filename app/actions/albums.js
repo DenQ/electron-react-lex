@@ -104,7 +104,6 @@ export function clearStatistics() {
 }
 
 export function recalculateAlbum(albumId) {
-  console.log(222);
   return (dispatch) => {
     return words
       .where({ albumId })

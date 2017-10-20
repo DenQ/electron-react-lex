@@ -12,6 +12,9 @@ import themes from 'lex/constants/menu-themes';
 import locates from 'lex/constants/menu-locates';
 import SelectCustom from 'lex/containers/selects/custom/container';
 
+const { remote } = require('electron');
+const currentWindow = remote.getCurrentWindow();
+
 const validate = values => {
   const errors = {};
   const { hitSize } = values;
@@ -25,7 +28,20 @@ const validate = values => {
   return errors;
 };
 
+function getCode(args) {
+  return Object.keys(args)
+    .filter(item => !isNaN(Number(item)))
+    .map(item => args[item])
+    .join('');
+}
+
 class SettingsBaseForm extends BaseComponent {
+
+  constructor(props) {
+    super(props);
+    this.handleChangeTheme = this.handleChangeTheme.bind(this);
+    this.handleChangeLocate = this.handleChangeLocate.bind(this);
+  }
 
   componentDidMount() {
     const { data, load, form } = this.props;
@@ -40,6 +56,16 @@ class SettingsBaseForm extends BaseComponent {
     }
   }
 
+  handleChangeTheme(e) {
+    const code = getCode(e);
+    currentWindow.send('change-theme', { code });
+  }
+
+  handleChangeLocate(e) {
+    const code = getCode(e);
+    currentWindow.send('change-locate', { code });
+  }
+
   render() {
     this.decorateStyle();
     const { handleSubmit, invalid } = this.props;
@@ -52,6 +78,7 @@ class SettingsBaseForm extends BaseComponent {
             hintText="Theme"
             floatingLabelText="Theme"
             data={themes}
+            handleChange={this.handleChangeTheme}
           />
         </div>
         <div>
@@ -61,6 +88,7 @@ class SettingsBaseForm extends BaseComponent {
             hintText="Locate"
             floatingLabelText="Locate"
             data={locates}
+            handleChange={this.handleChangeLocate}
           />
         </div>
         <div>
