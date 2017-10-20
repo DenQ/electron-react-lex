@@ -66,6 +66,12 @@ function renderApp(flag) {
   listOptions()(store.dispatch)
     .then(() => {
       return setOptionDefaultValue({
+        key: 'locate',
+        value: 'ru',
+      });
+    })
+    .then(() => {
+      return setOptionDefaultValue({
         key: 'hitSize',
         value: 5,
       });
