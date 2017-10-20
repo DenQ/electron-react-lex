@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import { pullData } from 'lex/actions/form-setup';
 import fillData from 'lex/utils/object-fill-from-data';
 import themes from 'lex/constants/menu-themes';
+import SelectCustom from 'lex/containers/selects/custom/container';
 
 const validate = values => {
   const errors = {};
@@ -24,29 +25,6 @@ const validate = values => {
     errors.hitSize = I18n.t('components.forms.mustBeGreaterZero');
   }
   return errors;
-};
-
-const ThemeSelect = () => {
-  const items = themes.map((item, index) => {
-    return (
-      <MenuItem
-        primaryText={item.label}
-        value={item.code}
-        key={index}
-      />
-    );
-  });
-  return (
-    <Field
-      floatingLabelText="Theme"
-      component={SelectField}
-      hintText="Theme"
-      fullWidth={true}
-      name="theme"
-    >
-      {items}
-    </Field>
-  );
 };
 
 class SettingsBaseForm extends BaseComponent {
@@ -79,7 +57,10 @@ class SettingsBaseForm extends BaseComponent {
           />
         </div>
         <div>
-          <ThemeSelect />
+          <SelectCustom
+            fieldName="theme"
+            data={themes}
+          />
         </div>
         <div>
           <RaisedButton
