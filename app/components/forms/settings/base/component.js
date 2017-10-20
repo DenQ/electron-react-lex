@@ -1,6 +1,9 @@
 import React from 'react';
-import { RaisedButton } from 'material-ui';
-import { TextField } from 'redux-form-material-ui';
+import { RaisedButton, MenuItem } from 'material-ui';
+import {
+  TextField,
+  SelectField
+} from 'redux-form-material-ui';
 import { Field, reduxForm } from 'redux-form';
 import BaseComponent from 'lex/libs/base/component';
 import BaseContainer from 'lex/libs/container';
@@ -8,6 +11,7 @@ import { I18n } from 'react-redux-i18n';
 import { connect } from 'react-redux';
 import { pullData } from 'lex/actions/form-setup';
 import fillData from 'lex/utils/object-fill-from-data';
+import themes from 'lex/constants/menu-themes';
 
 const validate = values => {
   const errors = {};
@@ -22,14 +26,40 @@ const validate = values => {
   return errors;
 };
 
+const ThemeSelect = () => {
+  const items = themes.map((item, index) => {
+    return (
+      <MenuItem
+        primaryText={item.label}
+        value={item.code}
+        key={index}
+      />
+    );
+  });
+  return (
+    <Field
+      name="theme"
+      component={SelectField}
+      hintText="Theme"
+      floatingLabelText="Driver"
+      defaultValue="blue"
+    >
+      {items}
+    </Field>
+  );
+};
+
 class SettingsBaseForm extends BaseComponent {
 
   componentDidMount() {
     const { data, load, form } = this.props;
     if (form, data) {
-      const { hitSize } = fillData(data);
+      const { hitSize, theme } = fillData(data);
       if (hitSize) {
         load('settings-base', 'hitSize', hitSize);
+      }
+      if (theme) {
+        load('settings-base', 'theme', theme);
       }
     }
   }
@@ -46,6 +76,9 @@ class SettingsBaseForm extends BaseComponent {
             fullWidth={true}
             name="hitSize"
           />
+        </div>
+        <div>
+          <ThemeSelect />
         </div>
         <div>
           <RaisedButton
