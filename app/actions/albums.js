@@ -1,9 +1,10 @@
 import db from 'lex/db/lex.dexie';
 import { LIST, GET } from 'lex/constants/album';
-import { PULL, HIT_OVER, CLEAR } from 'lex/constants/statistics-album';
+import { PULL, CLEAR } from 'lex/constants/statistics-album';
 import { spinnerContainer } from 'lex/constants/spinner';
 import { I18n } from 'react-redux-i18n';
 import notification from 'lex/utils/notificate';
+import getOption from 'lex/utils/get-option';
 
 const { albums, words } = db;
 const ALBUM_IS_EMPTY = 'album_is_empty';
@@ -20,7 +21,7 @@ export function insert(docs, callback) {
 }
 
 export function list() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     dispatch({
       type: spinnerContainer,
       show: true,
@@ -29,7 +30,7 @@ export function list() {
       .then((results) => {
         const pull = [];
         results.forEach((item) => {
-          const query = recalculateAlbum(item.id)(dispatch);
+          const query = recalculateAlbum(item.id)(dispatch, getState);
           pull.push(query);
         });
         return Promise.all(pull);
@@ -79,15 +80,18 @@ export function resetStatistics(albumId) {
 
 export function pullStatistics(albumId) {
   albumId = Number(albumId);
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    console.log(111, getState);
+    const state = getState();
     return words
       .where({albumId})
       .toArray()
       .then((results) => {
+        const hitSize = Number(getOption(state, 'hitSize'));
         dispatch({
           type: PULL,
           length: results.length,
-          learned: results.filter(item => item.hit >= HIT_OVER).length,
+          learned: results.filter(item => item.hit >= hitSize).length,
         });
       })
   }
@@ -104,7 +108,8 @@ export function clearStatistics() {
 }
 
 export function recalculateAlbum(albumId) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState();
     return words
       .where({ albumId })
       .toArray()
@@ -112,9 +117,10 @@ export function recalculateAlbum(albumId) {
         if (results.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
+        const hitSize = Number(getOption(state, 'hitSize'));
         return {
           size: results.length,
-          learned: results.filter(item => item.hit >= HIT_OVER).length,
+          learned: results.filter(item => item.hit >= hitSize).length,
         };
       })
       .then((infoAlbum) => {

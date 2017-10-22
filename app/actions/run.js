@@ -2,8 +2,8 @@ import db from 'lex/db/lex.dexie';
 import compareRandom from 'lex/utils/compare-random';
 import getRandomInt from 'lex/utils/get-random';
 import { LIST, CLEAR_STATE } from 'lex/constants/run';
-import { HIT_OVER } from 'lex/constants/statistics-album';
 import { spinnerContainer } from 'lex/constants/spinner';
+import getOption from 'lex/utils/get-option';
 
 const { words } = db;
 const SIZE = 5;
@@ -11,7 +11,8 @@ const ALBUM_IS_EMPTY = true;
 
 export function list(albumId) {
   albumId = Number(albumId);
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState();
     dispatch({
       type: spinnerContainer,
       show: true,
@@ -20,7 +21,8 @@ export function list(albumId) {
       .where({albumId})
       .toArray()
       .then((records) => {
-        records = records.filter(item => item.hit < HIT_OVER);
+        const hitSize = Number(getOption(state, 'hitSize'));
+        records = records.filter(item => item.hit < hitSize);
         if (records.length === 0) {
           return Promise.reject({code: ALBUM_IS_EMPTY});
         }
