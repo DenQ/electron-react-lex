@@ -1,6 +1,7 @@
 // @flow
 import { app, Menu, shell, BrowserWindow } from 'electron';
 import menuThemes from './constants/menu-themes';
+import menuLocates from './constants/menu-locates';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -167,11 +168,12 @@ export default class MenuBuilder {
         },
         {
           label: 'localizations',
-          submenu: ['en', 'ru'].map((item) => {
+          submenu: menuLocates.map((item) => {
+            const { label, code } = item;
             return {
-              label: item,
+              label,
               click: () => {
-                this.mainWindow.webContents.send('change-locate', { code: item });
+                this.mainWindow.webContents.send('change-locate', { code });
               }
             }
           }),

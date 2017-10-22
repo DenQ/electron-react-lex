@@ -15,10 +15,15 @@ export default {
     run: {
       title: 'Testing album - %{name}'
     },
+    settings: {
+      title: 'Settings',
+    },
   },
   components: {
     forms: {
       required: 'Required',
+      mustBeNumber: 'The value must be a number',
+      mustBeGreaterZero: 'Value must be greater than 0',
       addAlbum: {
         placeholders: {
           albumName: 'Album Name',
@@ -29,6 +34,11 @@ export default {
         placeholders: {
           word: 'Word',
           translate: 'Translate',
+        }
+      },
+      settings: {
+        placeholders: {
+          hitSize: 'Hit size',
         }
       },
     },

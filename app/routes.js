@@ -7,6 +7,7 @@ import ListAlbumsPage from './containers/pages/list-albums/container';
 import AddAlbumPage from './containers/pages/add-album/container';
 import EditAlbumPage from './containers/pages/edit-album/container';
 import RunAlbumPage from './containers/pages/run-album/container';
+import SettingsPage from './containers/pages/settings/container';
 
 export default () => (
   <App>
@@ -15,6 +16,7 @@ export default () => (
       <Route path="/add-album" component={AddAlbumPage} />
       <Route path="/edit-album/:id" component={EditAlbumPage} />
       <Route path="/run-album/:id" component={RunAlbumPage} />
+      <Route path="/settings" component={SettingsPage} />
       <Route path="/" component={ListAlbumsPage} />
     </Switch>
   </App>

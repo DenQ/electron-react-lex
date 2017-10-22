@@ -15,10 +15,15 @@ export default {
     run: {
       title: 'Тестирование - %{name}'
     },
+    settings: {
+      title: 'Настройки',
+    },
   },
   components: {
     forms: {
       required: 'Обязательно для заполнения',
+      mustBeNumber: 'Значение должно быть чисолм',
+      mustBeGreaterZero: 'Значение должно быть больше 0',
       addAlbum: {
         placeholders: {
           albumName: 'Название Альбома',
@@ -29,6 +34,11 @@ export default {
         placeholders: {
           word: 'Слово',
           translate: 'Перевод',
+        }
+      },
+      settings: {
+        placeholders: {
+          hitSize: 'Количество правильных ответов',
         }
       },
     },
