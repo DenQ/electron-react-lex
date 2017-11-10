@@ -11,6 +11,7 @@ const styles = {
     marginBottom: 3,
     height: 60,
     title: {
+      letterSpacing: 1,
       fontSize: 16,
       fontWeight: platforma !== 'win32' ? 900 : 'normal',
     }

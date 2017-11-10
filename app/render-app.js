@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import { ipcRenderer } from 'electron';
-import { push } from 'react-router-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { I18n, setLocale } from 'react-redux-i18n';
+import notification from 'lex/utils/notificate';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import IndigoThema from './themes/dark-indigo';
@@ -14,16 +13,12 @@ import {
   setOption,
   setOptionDefault,
   getOption,
-  setLang,
   list as listOptions
 } from './actions/options';
-import notification from 'lex/utils/notificate';
 
 const { remote } = require('electron');
 const currentWindow = remote.getCurrentWindow();
-
 const store = configureStore();
-
 let thema = IndigoThema;
 
 function setOptionValue(doc) {

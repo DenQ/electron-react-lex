@@ -81,7 +81,6 @@ export function resetStatistics(albumId) {
 export function pullStatistics(albumId) {
   albumId = Number(albumId);
   return (dispatch, getState) => {
-    console.log(111, getState);
     const state = getState();
     return words
       .where({albumId})
